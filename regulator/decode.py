@@ -1,4 +1,4 @@
-from pprint import pprint
+from prettyprinter import pprint
 
 import attr
 import yaml
@@ -8,9 +8,27 @@ class Location:
     start = attr.ib()
     stop = attr.ib(default=None)
 
+    @classmethod
+    def from_str(cls, s):
+        if '…' in s:
+            start, end = s.split('…', 1)
+            start = int(start)
+            stop = int(end)+1
+        elif '..' in s:
+            start, end = s.split('..', 1)
+            start = int(start)
+            stop = int(end)+1
+        else:
+            start = int(s)
+            stop = start+1
+        return Location(start, stop)
+
     def __attrs_post_init__(self):
         if self.stop is None:
             self.stop = self.start+1
+
+        if self.start >= self.stop:
+            raise ValueError('start must be less than stop')
 
     def __and__(self, other):
         assert isinstance(other, Location)
@@ -109,7 +127,17 @@ class Decoder:
 
         self.instances = {}
         for k, v in self.layout['instances'].items():
-            cluster_name, location = k.split(' ', 1)
+            cluster_name, start = k.split(' ', 1)
+            start = int(start, 0)
             name = v
+            cluster = self.clusters[cluster_name]
+            location = Location(start, start+cluster.size)
             instance = Instance(name, cluster_name, location)
             self.instances[name] = instance
+
+    def find_instance(self, addr):
+        addr = Location(addr)
+        for instance in self.instances.values():
+            if instance.location & addr:
+                return instance
+
