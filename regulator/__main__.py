@@ -1,44 +1,25 @@
 #!/usr/bin/env python3
 
-from . import memory
+import signal
 
-def process_line(line):
-    print(line)
-    line = line.strip()
-    if not ':' in line:
-        return
-    addr, data = line.split(':')
-    addr = int(addr, 16)
-    data = data[:-16].split()
-    word_size = len(data[0])/2
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk, Gdk
 
-    slice = MemorySlice(addr)
-    for word in data:
-        assert len(word) == word_size * 2
-        slice[addr] = word
-        addr += word_size
+from . import memory, parse
 
-    print(slice)
-
-
-def process_dump(text):
-    lines = text.split('\n')
-    if len(lines) < 3:
-        return
-    lines = lines[1:-1]
-    for line in lines:
-        process_line(line)
-
-def on_change(*args):
-    text = selection.wait_for_text()
+def on_change(clipboard, _):
+    text = clipboard.wait_for_text()
     if text is None:
         return
-    process_dump(text)
+    for slice in parse.parse_dump(text):
+        print(slice)
 
+def main():
+    clipboard = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY,)
+    clipboard.connect('owner-change', on_change)
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    Gtk.main()
 
-
-
-selection = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY,)
-selection.connect('owner-change', on_change)
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-Gtk.main()
+if __name__=="__main__":
+    main()
