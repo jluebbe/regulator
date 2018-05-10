@@ -1,9 +1,10 @@
 import binascii
 import signal
 
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
+import attr
+import bitstruct
+
+from .location import Location
 
 class MemorySlice:
     def _shift_slice(self, value, offset):
@@ -62,3 +63,128 @@ class MemorySlice:
 
     def __len__(self):
         return len(self.data)
+
+    @property
+    def inner_loc(self):
+        return Location(self.base, self.base+len(self.data))
+
+    def map(self, addr):
+        return addr
+
+class MemoryView:
+    """a relative view into a memory slice"""
+
+    def __init__(self, parent, loc):
+        self._parent = parent
+        loc = parent.inner_loc & loc
+        self._start = loc.start
+        self._stop = loc.stop
+
+    def __getitem__(self, index):
+        if index < 0 or index >= self._stop:
+            raise IndexError()
+
+        return self._parent[self._start+index]
+
+    def __repr__(self):
+        return "{}/{}".format(repr(self._parent), self.outer_loc)
+
+    def __len__(self):
+        return self._stop-self._start
+
+    @property
+    def outer_loc(self):
+        return Location(self._start, self._stop)
+
+    @property
+    def inner_loc(self):
+        return Location.from_size(self._stop-self._start)
+
+    @property
+    def word_size(self):
+        return self._parent.word_size
+
+    @property
+    def swapped(self):
+        return self._parent.swapped
+
+    def get_word(self, addr):
+        assert addr % self.word_size == 0
+        data = []
+        idxs = range(addr, addr+self.word_size)
+        if self.swapped:
+            idxs = reversed(idxs)
+        for i in idxs:
+            data.append(self[i])
+        return data
+
+    def get_word_bits(self, addr):
+        return ''.join('{:08b}'.format(x) for x in self.get_word(addr))
+
+    def map(self, index):
+        return self._parent.map(self._start+index)
+
+    @property
+    def mapped_loc(self):
+        return Location(self.map(0), self.map(len(self)))
+
+    def dump(self):
+        offset = self.map(0)
+        loc = self.inner_loc + offset
+        lines = []
+        for line_loc in loc.range(step=16, align=True):
+            line = ['{:08x}: '.format(line_loc.start)]
+            for word_loc in line_loc.range(step=self.word_size):
+                byte_range = list(word_loc.range())
+                if self.swapped:
+                    byte_range = reversed(byte_range)
+                for byte_loc in byte_range:
+                    if byte_loc & loc:
+                        line.append('%02x' % self[byte_loc.start - offset])
+                    else:
+                        line.append('--')
+                line.append(' ')
+            lines.append(''.join(line[:-1]))
+        return '\n'.join(lines)
+
+    def dump_bits(self, bit_loc):
+        bit_loc = bit_loc.reverse(self.word_size*8)
+
+        assert len(self) == self.word_size
+
+        mapped_loc = self.mapped_loc
+        aligned_loc = mapped_loc.align(16)
+        shift = mapped_loc.start - aligned_loc.start
+        assert shift % self.word_size == 0
+
+        line = ['{:08x}: '.format(aligned_loc.start)]
+        for words in range(shift//self.word_size):
+            line.append('  '*self.word_size+' ')
+
+        bit_offset = self.word_size * 8 - bit_loc.stop
+
+        mask_loc = (bit_loc//8).reverse(self.word_size)
+        byte_range = list(self.inner_loc.range())
+        if self.swapped:
+            byte_range = reversed(byte_range)
+        for byte_loc in byte_range:
+            if byte_loc & mask_loc:
+                line.append('%02x' % self[byte_loc.start])
+            else:
+                line.append('  ')
+                bit_offset -= 8
+        line.append(' = ')
+
+        word_bits = self.get_word_bits(0)
+        bits = '.'*bit_loc.start + \
+                word_bits[bit_loc.start:bit_loc.stop] + \
+                '.'*(self.word_size*8 - bit_loc.stop)
+
+        assert len(bits) == self.word_size*8
+
+        for i in range(0, len(bits), 4):
+            line.append(bits[i:i+4])
+            line.append('_')
+        line.pop()
+
+        return ''.join(line)

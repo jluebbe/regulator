@@ -1,58 +1,35 @@
 from prettyprinter import pprint
 
+from .memory import MemoryView
+from .location import Location
+
+from sortedcontainers import SortedListWithKey
+
 import attr
 import yaml
+import bitstruct
 
 @attr.s
-class Location:
-    start = attr.ib()
-    stop = attr.ib(default=None)
+class Kind:
+    hint = attr.ib()
+    bits = attr.ib()
 
     @classmethod
     def from_str(cls, s):
-        if '…' in s:
-            start, end = s.split('…', 1)
-            start = int(start)
-            stop = int(end)+1
-        elif '..' in s:
-            start, end = s.split('..', 1)
-            start = int(start)
-            stop = int(end)+1
-        else:
-            start = int(s)
-            stop = start+1
-        return Location(start, stop)
+        hint = s[0:1]
+        bits = int(s[1:])
+        return cls(hint, bits)
 
     def __attrs_post_init__(self):
-        if self.stop is None:
-            self.stop = self.start+1
-
-        if self.start >= self.stop:
-            raise ValueError('start must be less than stop')
-
-    def __and__(self, other):
-        assert isinstance(other, Location)
-        if self.start < other.stop and other.start < self.stop:
-            return Location(
-                    max(self.start, other.start),
-                    min(self.stop, other.stop)
-            )
-
-    def __add__(self, offset):
-        assert isinstance(offset, int)
-        return Location(self.start+offset, self.stop+offset)
+        if not self.hint in ['r', 'u']:
+            raise ValueError("unknown kind {}".format(self.kind))
 
     def __len__(self):
-        return self.stop - self.start
-
-    def next(self):
-        return Location(self.stop)
+        assert not self.bits % 8
+        return self.bits//8
 
     def __str__(self):
-        if len(self) == 1:
-            return '{}'.format(self.start)
-        else:
-            return '{}…{}'.format(self.start, self.stop-1)
+        return self.hint+str(self.bits)
 
 @attr.s
 class Field:
@@ -61,6 +38,14 @@ class Field:
     location = attr.ib()
     enum = attr.ib(default=None)
 
+    def __attrs_post_init__(self):
+        self.kind = Kind.from_str(self.kind)
+        self.location = Location.from_str(self.location, size=self.kind.bits)
+
+    def decode(self, value):
+        if self.enum is not None:
+            return self.enum[value]
+
 @attr.s
 class Type:
     name = attr.ib()
@@ -68,7 +53,8 @@ class Type:
     fields = attr.ib()
 
     def __attrs_post_init__(self):
-        fields = {}
+        self.kind = Kind.from_str(self.kind)
+        fields = SortedListWithKey(key=lambda x: x.location)
         for k, v in self.fields.items():
             kind, location = k.split()
             if isinstance(v, str):
@@ -77,14 +63,32 @@ class Type:
             else:
                 name = v.pop('name')
                 config = v
-            fields[int(location)] = Field(name, kind, location, **config)
+            field = Field(name, kind, location, **config)
+            fields.add(field)
         self.fields = fields
+
+    def __len__(self):
+        return len(self.kind)
+
+    def find_field(self, addr):
+        addr = Location(addr)
+        for field in self.fields:
+            if field.location & addr:
+                return field
 
 @attr.s
 class Register:
     name = attr.ib()
     kind = attr.ib()
     location = attr.ib()
+    type_name = attr.ib(default=None)
+
+    def __attrs_post_init__(self):
+        self.kind = Kind.from_str(self.kind)
+        assert self.kind.bits % 8 == 0
+        self.location = Location.from_str(self.location, size=self.kind.bits//8)
+        if self.type_name is None:
+            self.type_name = self.name
 
 @attr.s
 class Cluster:
@@ -102,12 +106,39 @@ class Cluster:
             types[name] = Type(name, kind, **v)
         self.types = types
 
-        registers = {}
+        registers = SortedListWithKey(key=lambda x: x.location)
         for k, v in self.registers.items():
             kind, location = k.split(' ', 1)
-            type_name = v
-            registers[int(location)] = Register(name, kind, location)
+            if isinstance(v, str):
+                name = v
+                config = {}
+            else:
+                name = v.pop('name')
+                config = v
+            register = Register(name, kind, location, config.get('type'))
+            registers.add(register)
         self.registers = registers
+
+    @property
+    def inner_loc(self):
+        return Location.from_size(self.size)
+
+    def find_register(self, addr):
+        addr = Location(addr)
+        for register in self.registers:
+            if register.location & addr:
+                return register
+
+    def find_type(self, addr):
+        register = self.find_register(addr)
+        return self.types[register.type_name]
+
+    def iterate(self, loc):
+        for register in self.registers.irange_key(
+                min_key=Location(loc.start),
+                max_key=Location(loc.stop),
+                inclusive=(True, False)):
+            yield (register, self.types[register.type_name])
 
 @attr.s
 class Instance:
@@ -121,7 +152,6 @@ class Decoder:
 
         self.clusters = {}
         for name, config in self.layout['clusters'].items():
-            pprint(config)
             cluster = Cluster(name, **config)
             self.clusters[name] = cluster
 
@@ -141,3 +171,38 @@ class Decoder:
             if instance.location & addr:
                 return instance
 
+    def find_cluster(self, addr):
+        instance = self.find_instance(addr)
+        cluster_name = instance.cluster
+        cluster = self.clusters[cluster_name]
+        return instance.location, cluster
+
+    def decode_fields(self, mv, reg_type):
+        assert len(mv) == len(reg_type.kind)
+        word = mv.get_word(0)
+        values = []
+        for field in reg_type.fields:
+            # use native math instead?
+            offset = reg_type.kind.bits - field.location.stop
+            fmt = "p{}{}".format(offset, str(field.kind))
+            value = bitstruct.unpack(fmt, word)[0]
+            decoded = field.decode(value)
+            values.append((field.location, field.name, value, decoded))
+        return list(reversed(values))
+
+    def decode(self, ms):
+        cluster_loc, cluster = self.find_cluster(ms.base)
+        mv = MemoryView(ms, cluster_loc)
+        loc = cluster.inner_loc & mv.inner_loc
+        assert loc is not None
+        print()
+        print(mv.dump())
+        for reg, reg_type in cluster.iterate(loc):
+            reg_mv = MemoryView(mv, reg.location)
+            print(reg_mv.dump())
+            #pretty((reg, reg_type))
+            for loc, name, value, decoded in self.decode_fields(reg_mv, reg_type):
+                if decoded:
+                    print(reg_mv.dump_bits(loc)+' # {} = {} '.format(value, decoded))
+                else:
+                    print(reg_mv.dump_bits(loc)+' # {}'.format(value))
