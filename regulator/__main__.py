@@ -4,6 +4,8 @@ import os
 import signal
 import sys
 
+import click
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, Gio
@@ -17,7 +19,7 @@ class ClipboardHandler:
         print('parser started')
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY,)
         self.clipboard.connect('owner-change', self.on_change)
-        print('monitoring clipboard')
+        print('monitoring primary selection')
 
     def on_change(self, clipboard, _):
         text = clipboard.wait_for_text()
@@ -25,7 +27,7 @@ class ClipboardHandler:
             return
         for ms in self.parser.parse_dirty(text):
             self.decoder.decode(ms)
-        print('clipboard done')
+        print('selection done')
 
 class LogHandler:
     def __init__(self, decoder, filename):
@@ -93,13 +95,28 @@ class LogHandler:
         else:
             print(event_type)
 
-def main():
-    decoder = decode.Decoder(open(sys.argv[1]))
+@click.group()
+def cli():
+    pass
+
+@cli.command()
+@click.argument('layout', type=click.File())
+def selection(layout):
+    decoder = decode.Decoder(layout)
     print('decoder loaded')
-    #handler = ClipboardHandler(decoder)
+    handler = ClipboardHandler(decoder)
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    Gtk.main()
+
+@cli.command()
+@click.argument('layout', type=click.File())
+@click.argument('log', type=click.Path())
+def log(layout, log):
+    decoder = decode.Decoder(layout)
+    print('decoder loaded')
     handler = LogHandler(decoder, 'log.txt')
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     Gtk.main()
 
 if __name__=="__main__":
-    main()
+    cli()
