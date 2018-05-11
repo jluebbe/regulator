@@ -173,6 +173,8 @@ class Decoder:
 
     def find_cluster(self, addr):
         instance = self.find_instance(addr)
+        if instance is None:
+            return None, None
         cluster_name = instance.cluster
         cluster = self.clusters[cluster_name]
         return instance.location, cluster
@@ -192,11 +194,12 @@ class Decoder:
 
     def decode(self, ms):
         cluster_loc, cluster = self.find_cluster(ms.base)
+        if cluster is None:
+            print('no instance found')
+            return
         mv = MemoryView(ms, cluster_loc)
-        loc = cluster.inner_loc & mv.inner_loc
+        loc = mv.outer_loc - cluster_loc.start
         assert loc is not None
-        print()
-        print(mv.dump())
         for reg, reg_type in cluster.iterate(loc):
             reg_mv = MemoryView(mv, reg.location)
             print(reg_mv.dump())

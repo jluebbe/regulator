@@ -13,6 +13,7 @@ class Parser:
         if not m:
             return False
         self.map_base = int(m.group(1), 16)
+        print('parser base set to 0x{:x}'.format(self.map_base))
         return True
 
     def parse_hex_line(self, line):
@@ -28,14 +29,13 @@ class Parser:
             assert len(word) == word_size * 2
             slice[addr:addr+word_size] = word
             addr += word_size
-
         print(slice)
         return slice
 
     def parse(self, text):
         lines = text.split('\n')
         if len(lines) < 3:
-            return
+            return []
         lines = lines[1:-1]
         slices = []
         for line in lines:

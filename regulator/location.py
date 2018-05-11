@@ -47,7 +47,9 @@ class Location:
             raise ValueError('start must be less than stop')
 
     def __and__(self, other):
-        assert isinstance(other, Location)
+        if not isinstance(other, Location):
+            raise TypeError('other must by of type Location (not {})'.format(type(other)))
+                
         if self.start < other.stop and other.start < self.stop:
             return Location(
                     max(self.start, other.start),

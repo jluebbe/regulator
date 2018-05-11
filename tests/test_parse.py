@@ -7,6 +7,16 @@ def test_parse_hex_line():
     s = str(ms)
     assert line[:len(s)] == s
 
+def test_parse_short():
+    p = Parser()
+    assert p.parse("dsafasdfSADF") == []
+    assert p.parse("\ndsafasdfSADF") == []
+    assert p.parse("dsafasdfSADF\n") == []
+
+def test_parse_bad():
+    p = Parser()
+    assert p.parse("\ndsafasdfSADF\n") == []
+
 def test_parse_memtool():
     p = Parser()
     dump = """

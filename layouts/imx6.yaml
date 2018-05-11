@@ -27,6 +27,58 @@ clusters:
     registers:
       r32 0x00: IPUx_CONF
       r32 0x04: IPUx_SISG_CTRL0
+  IPU_CSI:
+    size: 0x100
+    word_size: 4
+    types:
+      r32 IPUx_CSIy_SENS_CONF:
+        fields:
+          u1 00: CSIy_VSYNC_POL
+          u1 01: CSIy_HSYNC_POL
+          u1 02: CSIy_DATA_POL
+          u1 03: CSIy_SENS_PIX_CLK_POL
+          u3 04…06:
+            name: CSIy_SENS_PRTCL
+            enum:
+              0: "Gated clock mode"
+              1: "Non-gated clock mode"
+              2: "CCIR progressive mode (BT.656)"
+              3: "CCIR interlaced mode (BT.656)"
+              4: "CCIR progressive (BT.1120 DDR mode: data arrives on every edge of the clock)"
+              5: "CCIR progressive (BT.1120 SDR mode: data arrives only on the positive edge of the clock)"
+              6: "CCIR interlaced mode (BT.1120 DDR mode: data arrives on every edge of the clock)"
+              7: "CCIR interlaced mode (BT.1120 SDR mode: data arrives only on the positive edge of the clock)"
+          u1 07: CSIy_PACK_TIGHT
+          u3 08…10: CSIy_SENS_DATA_FORMAT
+          u4 11…14:
+            name: CSIy_DATA_WIDTH
+            enum:
+              0: 4 bits per color
+              1: 8 bits per color
+              2: 9 bits per color
+              3: 10 bits per color
+              4: 11 bits per color
+              5: 12 bits per color
+              6: 13 bits per color
+              7: 14 bits per color
+              8: 15 bits per color
+              9: 16 bits per color
+          u1 15: CSIy_EXT_VSYNC
+          u8 16…23: CSIy_DIV_RATIO
+          u3 24…26: CSIy_DATA_DEST
+          u1 27: CSIy_JPEG8_EN
+          u1 28: CSIy_JPEG_MODE
+          u1 29: CSIy_FORCE_EOF
+          u1 31: CSIy_DATA_EN_POL
+      r32 IPUx_CSIy_SENS_FRM_SIZE:
+        fields:
+          u13 00…12: CSIy_SENS_FRM_WIDTH
+          u12 16…27: CSIy_SENS_FRM_HEIGHT
+    registers:
+      r32 0x00: IPUx_CSIy_SENS_CONF
+      r32 0x04: IPUx_CSIy_SENS_FRM_SIZE
 instances:
-  IPU_Base 0x260000: IPU1_Base
-  IPU_Base 0x2A0000: IPU2_Base
+  IPU_Base 0x2600000: IPU1_Base
+  IPU_CSI 0x2630000: IPU1_CSI0
+  IPU_CSI 0x2638000: IPU1_CSI1
+  IPU_Base 0x2a00000: IPU2_Base
