@@ -157,9 +157,7 @@ class MemoryView:
         shift = mapped_loc.start - aligned_loc.start
         assert shift % self.word_size == 0
 
-        line = ['{:08x}: '.format(aligned_loc.start)]
-        for words in range(shift//self.word_size):
-            line.append('  '*self.word_size+' ')
+        line = ['{:08x}: '.format(mapped_loc.start)]
 
         bit_offset = self.word_size * 8 - bit_loc.stop
 

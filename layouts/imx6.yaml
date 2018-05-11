@@ -74,9 +74,14 @@ clusters:
         fields:
           u13 00…12: CSIy_SENS_FRM_WIDTH
           u12 16…27: CSIy_SENS_FRM_HEIGHT
+      r32 IPUx_CSIy_ACT_FRM_SIZE:
+        fields:
+          u13 00…12: CSIy_ACT_FRM_WIDTH
+          u12 16…27: CSIy_ACT_FRM_HEIGHT
     registers:
       r32 0x00: IPUx_CSIy_SENS_CONF
       r32 0x04: IPUx_CSIy_SENS_FRM_SIZE
+      r32 0x08: IPUx_CSIy_ACT_FRM_SIZE
 instances:
   IPU_Base 0x2600000: IPU1_Base
   IPU_CSI 0x2630000: IPU1_CSI0

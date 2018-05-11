@@ -29,7 +29,6 @@ class Parser:
             assert len(word) == word_size * 2
             slice[addr:addr+word_size] = word
             addr += word_size
-        print(slice)
         return slice
 
     def parse(self, text):
