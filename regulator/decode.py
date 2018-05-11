@@ -203,6 +203,6 @@ class Decoder:
             #pretty((reg, reg_type))
             for loc, name, value, decoded in self.decode_fields(reg_mv, reg_type):
                 if decoded:
-                    print(reg_mv.dump_bits(loc)+' # {} = {} '.format(value, decoded))
+                    print(reg_mv.dump_bits(loc)+' # {}: {} = {} '.format(name, value, decoded))
                 else:
-                    print(reg_mv.dump_bits(loc)+' # {}'.format(value))
+                    print(reg_mv.dump_bits(loc)+' # {}: {}'.format(name, value))
