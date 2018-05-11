@@ -1,0 +1,32 @@
+clusters:
+  IPU_Base:
+    size: 0xe8
+    word_size: 4
+    types:
+      r32 IPUx_CONF:
+        fields:
+          u1 00: CSI0_EN
+          u1 01: CSI1_EN
+          u1 02: IC_EN
+          u1 03: IRT_EN
+          u1 05: DP_EN
+          u1 06: DI0_EN
+          u1 07: DI1_EN
+          u1 08: SMFC_EN
+          u1 09: DC_EN
+          u1 10: DMFC_EN
+          u1 28:
+            name: CSI0_DATA_SOURCE
+            enum:
+              0: Parallel interface is connected to CSI0
+              1: MCT (MIPI) is connected to CSI0
+      r32 IPUx_SISG_CTRL0:
+        fields:
+          u1 00: VSYNC_RST_CNT
+          u3 01…03: NO_VSYNC_2_STRT_CNT
+    registers:
+      r32 0x00: IPUx_CONF
+      r32 0x04: IPUx_SISG_CTRL0
+instances:
+  IPU_Base 0x260000: IPU1_Base
+  IPU_Base 0x2A0000: IPU2_Base
