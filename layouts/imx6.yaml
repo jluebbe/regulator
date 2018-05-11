@@ -82,8 +82,34 @@ clusters:
       r32 0x00: IPUx_CSIy_SENS_CONF
       r32 0x04: IPUx_CSIy_SENS_FRM_SIZE
       r32 0x08: IPUx_CSIy_ACT_FRM_SIZE
+  IPU_IC:
+    size: 0x28
+    word_size: 4
+    types:
+      r32 IPUx_IC_CONF:
+        fields:
+          u1 00: PRPENC_EN
+          u1 01: PRPENC_CSC1
+          u1 02: PRPENC_ROT_EN
+          u1 08: PRPVF_EN
+          u1 09: PRPVF_CSC1
+          u1 10: PRPVF_CSC2
+          u1 11: PRPVF_CMB
+          u1 12: PRPVF_ROT_EN
+          u1 16: PP_EN
+          u1 17: PP_CSC1
+          u1 18: PP_CSC2
+          u1 19: PP_CMB
+          u1 20: PP_ROT_EN
+          u1 28: IC_GLB_LOC_A
+          u1 29: IC_KEY_COLOR_EN
+          u1 30: RWS_EN
+          u1 31: CSI_MEM_WR_EN
+    registers:
+      r32 0x00: IPUx_IC_CONF
 instances:
   IPU_Base 0x2600000: IPU1_Base
+  IPU_IC 0x2620000: IPU1_IC
   IPU_CSI 0x2630000: IPU1_CSI0
   IPU_CSI 0x2638000: IPU1_CSI1
   IPU_Base 0x2a00000: IPU2_Base

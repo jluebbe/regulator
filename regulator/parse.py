@@ -31,11 +31,7 @@ class Parser:
             addr += word_size
         return slice
 
-    def parse(self, text):
-        lines = text.split('\n')
-        if len(lines) < 3:
-            return []
-        lines = lines[1:-1]
+    def parse_lines(self, lines):
         slices = []
         for line in lines:
             if self.parse_map(line):
@@ -45,3 +41,11 @@ class Parser:
                 if slice:
                     slices.append(slice)
         return slices
+
+    def parse_dirty(self, text):
+        lines = text.split('\n')
+        if len(lines) < 3:
+            return []
+        lines = lines[1:-1]
+        return self.parse_lines(lines)
+

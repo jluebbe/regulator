@@ -9,13 +9,13 @@ def test_parse_hex_line():
 
 def test_parse_short():
     p = Parser()
-    assert p.parse("dsafasdfSADF") == []
-    assert p.parse("\ndsafasdfSADF") == []
-    assert p.parse("dsafasdfSADF\n") == []
+    assert p.parse_dirty("dsafasdfSADF") == []
+    assert p.parse_dirty("\ndsafasdfSADF") == []
+    assert p.parse_dirty("dsafasdfSADF\n") == []
 
 def test_parse_bad():
     p = Parser()
-    assert p.parse("\ndsafasdfSADF\n") == []
+    assert p.parse_dirty("\ndsafasdfSADF\n") == []
 
 def test_parse_memtool():
     p = Parser()
@@ -28,7 +28,7 @@ f1022130: 00000000 00000000 00000000 00000000                ................
 f1022140: 00000000 00000000 00000000 00000000                ................
 f1022150: 00000000 00000000 00000000 00000000                ................
     """
-    result = p.parse(dump)
+    result = p.parse_dirty(dump)
     assert len(result) == 6
     assert p.map_base == 0x0
     ms = result[2]
@@ -48,7 +48,7 @@ mapping offset 0x02600000 (size 0x200000)
 00030040: 00000000 00000000 00000000 00000000 ................
 00030050: 00000000 00000000 00000000 00000000 ................
     """
-    result = p.parse(dump)
+    result = p.parse_dirty(dump)
     assert len(result) == 6
     assert p.map_base == 0x2600000
     ms = result[0]
