@@ -1,3 +1,6 @@
+from hypothesis import given, assume
+from hypothesis.strategies import integers
+
 from regulator.location import Location
 
 def test_location():
@@ -25,3 +28,25 @@ def test_location():
     assert Location.from_str('1..2') == Location(1, 3)
 
     assert Location(8, 16).reverse(32) == Location(16, 24)
+
+@given(start=integers())
+def test_start(start):
+    assert Location(start).start == start
+
+@given(start=integers(0), size=integers(1))
+def test_size(start, size):
+    l = Location(start, start+size)
+    assert l.start == start
+    assert l.stop == start+size
+    assert len(l) == size
+
+@given(start=integers(0), size=integers(1), width=integers(1))
+def test_reverse(start, size, width):
+    assume(size<=width)
+
+    l = Location(start, start+size)
+    assert l.start == start
+    assert len(l) == size
+    r = l.reverse(width)
+    assert len(l) == size
+    assert r.start == width-l.stop
