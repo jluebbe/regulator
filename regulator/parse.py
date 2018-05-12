@@ -18,10 +18,16 @@ class Parser:
 
     def parse_hex_line(self, line):
         line = line.strip()
+        if not line:
+            return
         if not ':' in line:
             return
-        addr, data = line.split(':')
-        addr = int(addr, 16) + self.map_base
+        addr, data = line.split(':', 1)
+        try:
+            addr = int(addr, 16)
+        except ValueError:
+            return
+        addr += self.map_base
         data = data[:-16].split()
         word_size = len(data[0])//2
         slice = MemorySlice(addr, word_size=word_size)

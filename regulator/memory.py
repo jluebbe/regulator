@@ -76,9 +76,11 @@ class MemoryView:
 
     def __init__(self, parent, loc):
         self._parent = parent
-        loc = parent.inner_loc & loc
-        self._start = loc.start
-        self._stop = loc.stop
+        overlap = parent.inner_loc & loc
+        if overlap is None:
+            raise ValueError("{} and {} do not overlap".format(parent.inner_loc, loc))
+        self._start = overlap.start
+        self._stop = overlap.stop
 
     def __getitem__(self, index):
         if index < 0 or index >= self._stop:

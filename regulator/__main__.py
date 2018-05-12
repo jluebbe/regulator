@@ -79,7 +79,6 @@ class LogHandler:
             return
         for ms in self.parser.parse_lines(lines):
             self.decoder.decode(ms)
-        print('log done')
 
 
     def on_change(self, file_monitor, file, other_file, event_type):
@@ -91,7 +90,7 @@ class LogHandler:
             if self.reader:
                 self.read()
         elif event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT:
-            pass
+            print('log done')
         else:
             print(event_type)
 

@@ -1,0 +1,44 @@
+clusters:
+  RTC:
+    size: 0x100
+    word_size: 4
+    types:
+      r32 HW_RTC_CTRL:
+        fields:
+          u1 00: ALARM_IRQ_EN
+          u1 01: ONEMSEC_IRQ_EN
+          u1 02: ALARM_IRQ
+          u1 03: ONEMSEC_IRQ
+          u1 04: WATCHDOGEN
+          u1 05: FORCE_UPDATE
+          u1 06: SUPPRESS_COPY2ANALOG
+          u1 30: CLKGATE
+          u1 31: SFTRST
+      r32 HW_RTC_STAT:
+        fields:
+          u8 8…15: NEW_REGS
+          u8 16…23: STALE_REGS
+          u1 27: XTAL32768_PRESENT
+          u1 28: XTAL32000_PRESENT
+          u1 29: WATCHDOG_PRESENT
+          u1 30: ALARM_PRESENT
+          u1 31: RTC_PRESENT
+      r32 HW_RTC_MILLISECONDS:
+        fields:
+          u32 0…31: COUNT
+      r32 HW_RTC_SECONDS:
+        fields:
+          u32 0…31: COUNT
+      r32 HW_RTC_VERSION:
+        fields:
+          u16 0…15: STEP
+          u8 16…23: MINOR
+          u8 24…31: MAJOR
+    registers:
+      r32 0x00: HW_RTC_CTRL
+      r32 0x10: HW_RTC_STAT
+      r32 0x20: HW_RTC_MILLISECONDS
+      r32 0x30: HW_RTC_SECONDS
+      r32 0xd0: HW_RTC_VERSION
+instances:
+  RTC 0x8005c000: RTC

@@ -201,8 +201,8 @@ class Decoder:
         loc = mv.outer_loc - cluster_loc.start
         assert loc is not None
         for reg, reg_type in cluster.iterate(loc):
-            reg_mv = MemoryView(mv, reg.location)
-            print(reg_mv.dump())
+            reg_mv = MemoryView(mv, reg.location - loc.start)
+            print(reg_mv.dump()+' # {}'.format(reg.name))
             #pretty((reg, reg_type))
             for loc, name, value, decoded in self.decode_fields(reg_mv, reg_type):
                 if decoded:
