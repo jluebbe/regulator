@@ -1,4 +1,44 @@
 clusters:
+  CLKCTRL:
+    size: 0x150
+    word_size: 4
+    types:
+      r32 HW_CLKCTRL_PLLCTRL0:
+        fields:
+          u1 16: POWER
+          u1 18: EN_USB_CLKS
+          u2 20…21:
+            name: DIV_SEL
+            enum:
+              0: DEFAULT
+              1: LOWER
+              2: LOWEST
+              3: UNDEFINED
+          u2 24…25:
+            name: CP_SEL
+            enum:
+              0: DEFAULT
+              1: TIMES_2
+              2: TIMES_05
+              3: UNDEFINED
+      r32 HW_CLKCTRL_PLLCTRL1:
+        fields:
+          u16 0…15: LOCK_COUNT
+          u1 30: FORCE_LOCK
+          u1 31: LOCK
+      r32 HW_CLKCTRL_CPU:
+        fields:
+          u6 0…5: DIV_CPU
+      r32 HW_CLKCTRL_VERSION:
+        fields:
+          u16 0…15: STEP
+          u8 16…23: MINOR
+          u8 24…31: MAJOR
+    registers:
+      r32 0x000: HW_CLKCTRL_PLLCTRL0
+      r32 0x010: HW_CLKCTRL_PLLCTRL1
+      r32 0x020: HW_CLKCTRL_CPU
+      r32 0x140: HW_CLKCTRL_VERSION
   RTC:
     size: 0x100
     word_size: 4
@@ -41,4 +81,5 @@ clusters:
       r32 0x30: HW_RTC_SECONDS
       r32 0xd0: HW_RTC_VERSION
 instances:
+  CLKCTRL 0x80040000: CLKCTRL
   RTC 0x8005c000: RTC

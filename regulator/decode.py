@@ -147,23 +147,31 @@ class Instance:
     location = attr.ib()
 
 class Decoder:
-    def __init__(self, layout):
-        self.layout = yaml.load(layout)
+    def __init__(self, filename):
+        self.filename = filename
+        self.reload()
 
-        self.clusters = {}
-        for name, config in self.layout['clusters'].items():
+    def reload(self):
+        layout = yaml.load(open(self.filename, 'r'))
+
+        clusters = {}
+        for name, config in layout['clusters'].items():
             cluster = Cluster(name, **config)
-            self.clusters[name] = cluster
+            clusters[name] = cluster
 
-        self.instances = {}
-        for k, v in self.layout['instances'].items():
+        instances = {}
+        for k, v in layout['instances'].items():
             cluster_name, start = k.split(' ', 1)
             start = int(start, 0)
             name = v
-            cluster = self.clusters[cluster_name]
+            cluster = clusters[cluster_name]
             location = Location(start, start+cluster.size)
             instance = Instance(name, cluster_name, location)
-            self.instances[name] = instance
+            instances[name] = instance
+
+        self.layout = layout
+        self.clusters = clusters
+        self.instances = instances
 
     def find_instance(self, addr):
         addr = Location(addr)

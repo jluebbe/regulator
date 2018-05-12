@@ -12,6 +12,36 @@ from gi.repository import Gtk, Gdk, Gio
 
 from . import parse, decode
 
+class DecoderMonitor:
+    def __init__(self, filename):
+        self.filename = filename
+        self.file = Gio.File.new_for_path(filename)
+        self.monitor = self.file.monitor_file(
+                Gio.FileMonitorFlags.NONE,
+                None)
+        self.monitor.connect('changed', self.on_change)
+        print('monitoring layout {}'.format(filename))
+        self.decoder = decode.Decoder(filename)
+        print('decoder loaded')
+
+    def reload(self):
+        self.decoder.reload()
+        print('decoder reloaded')
+
+    def on_change(self, file_monitor, file, other_file, event_type):
+        if event_type == Gio.FileMonitorEvent.CREATED:
+            pass
+        elif event_type == Gio.FileMonitorEvent.DELETED:
+            pass
+        elif event_type == Gio.FileMonitorEvent.CHANGED:
+            pass
+        elif event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT:
+            self.reload()
+        elif event_type == Gio.FileMonitorEvent.ATTRIBUTE_CHANGED:
+            pass
+        else:
+            print(self, event_type)
+
 class ClipboardHandler:
     def __init__(self, decoder):
         self.decoder = decoder
@@ -80,7 +110,6 @@ class LogHandler:
         for ms in self.parser.parse_lines(lines):
             self.decoder.decode(ms)
 
-
     def on_change(self, file_monitor, file, other_file, event_type):
         if event_type == Gio.FileMonitorEvent.CREATED:
             self.open()
@@ -92,28 +121,26 @@ class LogHandler:
         elif event_type == Gio.FileMonitorEvent.CHANGES_DONE_HINT:
             print('log done')
         else:
-            print(event_type)
+            print(self, event_type)
 
 @click.group()
 def cli():
     pass
 
 @cli.command()
-@click.argument('layout', type=click.File())
+@click.argument('layout', type=click.Path())
 def selection(layout):
-    decoder = decode.Decoder(layout)
-    print('decoder loaded')
-    handler = ClipboardHandler(decoder)
+    decoder_monitor = DecoderMonitor(layout)
+    handler = ClipboardHandler(decoder_monitor.decoder)
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     Gtk.main()
 
 @cli.command()
-@click.argument('layout', type=click.File())
+@click.argument('layout', type=click.Path())
 @click.argument('log', type=click.Path())
 def log(layout, log):
-    decoder = decode.Decoder(layout)
-    print('decoder loaded')
-    handler = LogHandler(decoder, 'log.txt')
+    decoder_monitor = DecoderMonitor(layout)
+    handler = LogHandler(decoder_monitor.decoder, 'log.txt')
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     Gtk.main()
 
