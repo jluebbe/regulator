@@ -3,6 +3,7 @@ branch = true
 source =
     regulator
     tests
+parallel = true
 
 [paths]
 source = 
