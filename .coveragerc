@@ -1,15 +1,16 @@
 [run]
-branch = True
+branch = true
 source =
     regulator
-    */site-packages/regulator
+    tests
 
 [paths]
 source = 
-    regulator
+    src/regulator
     */site-packages/regulator
 
 [report]
+show_missing = true
 exclude_lines =
     pragma: no cover
     def __repr__

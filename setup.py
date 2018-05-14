@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import fastentrypoints
+from setuptools import find_packages
 from setuptools import setup
 
 setup(
@@ -27,10 +28,8 @@ setup(
         'pyyaml',
         'sortedcontainers',
     ],
-    packages=[
-        'regulator',
-    ],
-    # the following makes a plugin available to pytest
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     entry_points={
         'console_scripts': [
             'regulator = regulator.__main__:main',
