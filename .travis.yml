@@ -1,5 +1,7 @@
 language: python
 cache: pip
+dist: xenial
+group: edge
 matrix:
   include:
     - python: '3.5'
