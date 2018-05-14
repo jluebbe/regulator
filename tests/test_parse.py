@@ -1,5 +1,6 @@
 from regulator.parse import Parser
 
+
 def test_parse_hex_line():
     p = Parser()
     line = "f1022100: 00000000 00000011 00000001 03330007                ..............3."
@@ -54,4 +55,3 @@ mapping offset 0x02600000 (size 0x200000)
     ms = result[0]
     assert ms.base == 0x2630000
     assert ms[0x2630004:0x2630008] == '01df02ef'
-

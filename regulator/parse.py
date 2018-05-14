@@ -2,6 +2,7 @@ import re
 
 from .memory import MemorySlice
 
+
 class Parser:
     MAP_MESSAGE = re.compile(r"^mapping offset (\S+) \(size (\S+)\)$")
 
@@ -54,4 +55,3 @@ class Parser:
             return []
         lines = lines[1:-1]
         return self.parse_lines(lines)
-

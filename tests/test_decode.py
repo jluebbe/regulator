@@ -3,10 +3,13 @@ from textwrap import dedent
 
 import pytest
 
-from regulator.parse import Parser
-from regulator.decode import Decoder, Kind
+from regulator.decode import Decoder
+from regulator.decode import Kind
 from regulator.location import Location
-from regulator.memory import MemorySlice, MemoryView
+from regulator.memory import MemorySlice
+from regulator.memory import MemoryView
+from regulator.parse import Parser
+
 
 @pytest.fixture
 def decoder_mx6(pytestconfig):

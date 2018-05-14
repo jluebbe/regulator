@@ -1,13 +1,12 @@
+import attr
+import bitstruct
+import yaml
 from prettyprinter import pprint
-
-from .memory import MemoryView
-from .location import Location
-
 from sortedcontainers import SortedListWithKey
 
-import attr
-import yaml
-import bitstruct
+from .location import Location
+from .memory import MemoryView
+
 
 @attr.s
 class Kind:
@@ -147,12 +146,18 @@ class Instance:
     location = attr.ib()
 
 class Decoder:
-    def __init__(self, filename):
-        self.filename = filename
-        self.reload()
+    def __init__(self, f):
+        if isinstance(f, str):
+            self.filename = f
+            self.reload()
+        else:
+            self.load(f)
 
     def reload(self):
-        layout = yaml.load(open(self.filename, 'r'))
+        self.load(open(self.filename, 'r'))
+
+    def load(self, stream):
+        layout = yaml.load(stream)
 
         clusters = {}
         for name, config in layout['clusters'].items():

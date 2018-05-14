@@ -1,5 +1,7 @@
 from regulator.location import Location
-from regulator.memory import MemorySlice, MemoryView
+from regulator.memory import MemorySlice
+from regulator.memory import MemoryView
+
 
 def test_slice():
     ms = MemorySlice(0)

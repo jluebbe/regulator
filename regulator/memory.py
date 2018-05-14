@@ -6,6 +6,7 @@ import bitstruct
 
 from .location import Location
 
+
 class MemorySlice:
     def _shift_slice(self, value, offset):
         if isinstance(value, slice):

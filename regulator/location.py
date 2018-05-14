@@ -1,5 +1,6 @@
 import attr
 
+
 @attr.s(frozen=True)
 class Location:
     start = attr.ib()

@@ -1,7 +1,9 @@
-from hypothesis import given, assume
+from hypothesis import assume
+from hypothesis import given
 from hypothesis.strategies import integers
 
 from regulator.location import Location
+
 
 def test_location():
     assert Location(1) == Location(1, 2)

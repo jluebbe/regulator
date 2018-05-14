@@ -5,12 +5,16 @@ import signal
 import sys
 
 import click
-
 import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, Gio
+from gi.repository import Gdk
+from gi.repository import Gio
+from gi.repository import Gtk
 
-from . import parse, decode
+from . import decode
+from . import parse
+
+gi.require_version('Gtk', '3.0')
+
 
 class DecoderMonitor:
     def __init__(self, filename):
