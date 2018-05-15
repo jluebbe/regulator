@@ -1,7 +1,5 @@
 language: python
 cache: pip
-dist: xenial
-group: edge
 matrix:
   include:
     - python: '3.5'
@@ -10,9 +8,6 @@ matrix:
     - python: '3.6'
       env:
         - TOXENV=py36,report,codecov
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y libgirepository1.0-dev
 install:
   - pip install tox
 script:

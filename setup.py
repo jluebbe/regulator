@@ -24,7 +24,6 @@ setup(
         'bitstruct',
         'click',
         'prettyprinter',
-        'pygobject',
         'pyyaml',
         'sortedcontainers',
     ],
