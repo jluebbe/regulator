@@ -5,8 +5,7 @@ import sys
 import click
 import gi
 
-from . import decode
-from . import parse
+from . import decode, parse
 
 gi.require_version('Gdk', '3.0') # isort:skip
 gi.require_version('Gtk', '3.0') # isort:skip
