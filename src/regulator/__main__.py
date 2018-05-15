@@ -1,19 +1,16 @@
-#!/usr/bin/env python3
-
 import os
 import signal
 import sys
 
 import click
 import gi
-from gi.repository import Gdk
-from gi.repository import Gio
-from gi.repository import Gtk
 
 from . import decode
 from . import parse
 
-gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0') # isort:skip
+gi.require_version('Gtk', '3.0') # isort:skip
+from gi.repository import Gdk, Gio, Gtk # isort:skip
 
 
 class DecoderMonitor:

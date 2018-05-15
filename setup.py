@@ -32,7 +32,7 @@ setup(
     package_dir={'': 'src'},
     entry_points={
         'console_scripts': [
-            'regulator = regulator.__main__:main',
+            'regulator = regulator.__main__:cli',
         ]
     },
 )
