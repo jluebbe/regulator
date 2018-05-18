@@ -90,7 +90,7 @@ class MemoryView:
         return self._parent[self._start+index]
 
     def __repr__(self):
-        return "{}/{}".format(repr(self._parent), self.outer_loc)
+        return "{}/{}".format(repr(self._parent), self.outer_loc.hex())
 
     def __len__(self):
         return self._stop-self._start

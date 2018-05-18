@@ -84,6 +84,12 @@ class Location:
         else:
             return '{}…{}'.format(self.start, self.stop-1)
 
+    def hex(self):
+        if len(self) == 1:
+            return '0x{:x}'.format(self.start)
+        else:
+            return '0x{:x}…{:x}'.format(self.start, self.stop-1)
+
     def align(self, step):
         start = (self.start // step) * step
         stop = (self.stop // step + 1) * step
