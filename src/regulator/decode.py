@@ -190,7 +190,7 @@ class Decoder:
             return None, None
         cluster_name = instance.cluster
         cluster = self.clusters[cluster_name]
-        return instance.location, cluster
+        return instance, cluster
 
     def decode_fields(self, mv, reg_type):
         assert len(mv) == len(reg_type.kind)
@@ -206,16 +206,16 @@ class Decoder:
         return list(reversed(values))
 
     def decode(self, ms):
-        cluster_loc, cluster = self.find_cluster(ms.base)
-        if cluster is None:
+        instance, cluster = self.find_cluster(ms.base)
+        if instance is None:
             print('no instance found')
             return
-        mv = MemoryView(ms, cluster_loc)
-        loc = mv.outer_loc - cluster_loc.start
+        mv = MemoryView(ms, instance.location)
+        loc = mv.outer_loc - instance.location.start
         assert loc is not None
         for reg, reg_type in cluster.iterate(loc):
             reg_mv = MemoryView(mv, reg.location - loc.start)
-            print(reg_mv.dump()+' # {}'.format(reg.name))
+            print(reg_mv.dump()+' # {} {}'.format(instance.name, reg.name))
             #pretty((reg, reg_type))
             for loc, name, value, decoded in self.decode_fields(reg_mv, reg_type):
                 if decoded:
