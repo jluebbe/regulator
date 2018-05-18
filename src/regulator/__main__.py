@@ -140,7 +140,7 @@ def selection(layout):
 @click.argument('log', type=click.Path())
 def log(layout, log):
     decoder_monitor = DecoderMonitor(layout)
-    handler = LogHandler(decoder_monitor.decoder, 'log.txt')
+    handler = LogHandler(decoder_monitor.decoder, log)
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     Gtk.main()
 
