@@ -92,19 +92,19 @@ class Location:
 
     def align(self, step):
         start = (self.start // step) * step
-        stop = (self.stop // step + 1) * step
+        stop = ((self.stop - 1) // step + 1) * step
         return Location(start, stop)
 
     def range(self, *, step=1, align=False):
         assert step > 0
         if align:
             start = (self.start // step) * step
-            stop = (self.stop // step + 1) * step
+            stop = ((self.stop - 1) // step + 1) * step
         else:
             start = self.start
             stop = self.stop
         for idx in range(start, stop, step):
-            yield Location(idx, idx+step)
+            yield Location(idx, idx + step)
 
     def reverse(self, size):
         return Location(size-self.stop, size-self.start)

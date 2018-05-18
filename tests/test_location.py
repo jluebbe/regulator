@@ -31,6 +31,24 @@ def test_location():
 
     assert Location(8, 16).reverse(32) == Location(16, 24)
 
+def test_align():
+    assert Location(0, 1).align(8) == Location(0, 8)
+    assert Location(0, 1).align(16) == Location(0, 16)
+    assert Location(0x10, 0x21).align(16) == Location(0x10, 0x30)
+
+def test_range():
+    assert list(Location(0, 3).range(step=1, align=False)) == [
+            Location(0),
+            Location(1),
+            Location(2),
+    ]
+    assert list(Location(0, 16).range(step=4, align=False)) == [
+            Location(0, 4),
+            Location(4, 8),
+            Location(8, 12),
+            Location(12, 16),
+    ]
+
 @given(start=integers())
 def test_start(start):
     assert Location(start).start == start
