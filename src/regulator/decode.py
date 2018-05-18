@@ -217,8 +217,8 @@ class Decoder:
             reg_mv = MemoryView(mv, reg.location - loc.start)
             print(reg_mv.dump()+' # {} {}'.format(instance.name, reg.name))
             #pretty((reg, reg_type))
-            for loc, name, value, decoded in self.decode_fields(reg_mv, reg_type):
+            for field_loc, name, value, decoded in self.decode_fields(reg_mv, reg_type):
                 if decoded:
-                    print(reg_mv.dump_bits(loc)+' # {}: {} = {} '.format(name, value, decoded))
+                    print(reg_mv.dump_bits(field_loc)+' # {}: {} = {} '.format(name, value, decoded))
                 else:
-                    print(reg_mv.dump_bits(loc)+' # {}: {}'.format(name, value))
+                    print(reg_mv.dump_bits(field_loc)+' # {}: {}'.format(name, value))
