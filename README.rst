@@ -75,7 +75,7 @@ Regulator produces this output::
 Documentation
 -------------
 
-Currently none.
+Currently none, except for this README.
 
 Contributing
 ------------
