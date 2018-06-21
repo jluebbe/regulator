@@ -111,6 +111,28 @@ Install regulator into the virtualenv:
    $ pip install pygobject
    $ pip install -e .
 
+Then there are several ways to start regulator:
+
+1. Pass the hexdump on stdin:
+
+   .. code-block:: bash
+
+     $ regulator input your-layoutfile.yaml < your-hexdump
+
+2. Decode the content of a file every time it changes on disk:
+
+   .. code-block:: bash
+
+     $ regulator log your-layoutfile.yaml the-file-to-watch
+
+3. Decode the contents of the primary clipboard selection buffer every time it changes:
+
+   .. code-block:: bash
+
+     $ regulator selection your-layoutfile.yaml
+
+Example layout files can be found in the ``layouts/`` folder.
+
 Tests can be run via:
 
 .. code-block:: bash
