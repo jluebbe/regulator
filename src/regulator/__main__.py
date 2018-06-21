@@ -144,5 +144,15 @@ def log(layout, log):
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     Gtk.main()
 
+@cli.command()
+@click.argument('layout', type=click.Path())
+def input(layout):
+    parser = parse.Parser()
+    decoder = decode.Decoder(layout)
+
+    for line in sys.stdin:
+        for ms in parser.parse_lines((line, )):
+            decoder.decode(ms)
+
 if __name__=="__main__":
     cli()
