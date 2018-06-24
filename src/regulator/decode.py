@@ -50,6 +50,7 @@ class Type:
     name = attr.ib()
     kind = attr.ib()
     fields = attr.ib()
+    enums = attr.ib(default=None)
 
     def __attrs_post_init__(self):
         self.kind = Kind.from_str(self.kind)
@@ -62,6 +63,9 @@ class Type:
             else:
                 name = v.pop('name')
                 config = v
+            if "enum" in config.keys() and isinstance(config["enum"], str):
+                assert config["enum"] in self.enums.keys()
+                config["enum"] = self.enums[config["enum"]]
             field = Field(name, kind, location, **config)
             fields.add(field)
         self.fields = fields
