@@ -21,6 +21,11 @@ def decoder_mx23(pytestconfig):
     layout = open(str(pytestconfig.rootdir.join('layouts/imx23.yaml')))
     return Decoder(layout)
 
+@pytest.fixture
+def decoder_mx28(pytestconfig):
+    layout = open(str(pytestconfig.rootdir.join('layouts/imx28.yaml')))
+    return Decoder(layout)
+
 def test_load(decoder_mx6):
     d = decoder_mx6
     pretty(d.layout['clusters'], width=120)
@@ -106,3 +111,22 @@ def test_decode_mx23(decoder_mx23):
     print()
     decoder_mx23.decode(result[0])
     decoder_mx23.decode(result[1])
+
+def test_decode_mx28(decoder_mx28):
+    dump = """
+80018300: 44444444 44444444 44444444 44444444                DDDDDDDDDDDDDDDD
+80018310: 00000000 00000000 00000000 00000000                ................
+80018320: 44444444 44444444 44444444 44444444                DDDDDDDDDDDDDDDD
+80018330: 00044444 00044444 00044444 00044444                DD..DD..DD..DD..
+80018340: 44444444 44444444 44444444 44444444                DDDDDDDDDDDDDDDD
+    """.strip().splitlines()
+    p = Parser()
+    result = p.parse_lines(dump)
+
+    assert len(result) == 5
+    assert result[0].base == 0x80018300
+    assert result[4].base == 0x80018340
+
+    print()
+    decoder_mx28.decode(result[0])
+    decoder_mx28.decode(result[1])
