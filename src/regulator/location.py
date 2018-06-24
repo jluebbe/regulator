@@ -11,6 +11,8 @@ class Location:
         def from_hex_or_dec(s):
             if s.startswith('0x'):
                 return int(s, 16)
+            elif s.startswith('0b'):
+                return int(s, 2)
             else:
                 return int(s, 10)
 
