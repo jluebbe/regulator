@@ -1,0 +1,2630 @@
+clusters:
+  PINCTRL_Base:
+    size: 0x600
+    types:
+      r32 PINCTRL_CTRL:
+        fields:
+          u1 0: IRQOUT0
+          u1 1: IRQOUT1
+          u1 2: IRQOUT2
+          u1 3: IRQOUT3
+          u1 4: IRQOUT4
+          u1 20: PRESENT0
+          u1 21: PRESENT1
+          u1 22: PRESENT2
+          u1 23: PRESENT3
+          u1 24: PRESENT4
+          u1 30: CLKGATE
+          u1 31: SFTRST
+
+      r32 PINCTRL_MUXSEL0:
+        fields:
+          u2 14…15:
+            name: BANK0_PIN07, GPMI_D07
+            enum:
+              0: GPMI_D07
+              1: SSP1_D7
+              2: reserved
+              3: GPIO
+          u2 12…13:
+            name: BANK0_PIN06, GPMI_D06
+            enum:
+              0: GPMI_D6
+              1: SSP1_D6
+              2: reserved
+              3: GPIO
+          u2 10…11:
+            name: BANK0_PIN05, GPMI_D05
+            enum:
+              0: GPMI_D5
+              1: SSP1_D5
+              2: reserved
+              3: GPIO
+          u2 8…9:
+            name: BANK0_PIN04, GPMI_D04
+            enum:
+              0: GPMI_D4
+              1: SSP1_D4
+              2: reserved
+              3: GPIO
+          u2 6…7:
+            name: BANK0_PIN03, GPMI_D03
+            enum:
+              0: GPMI_D3
+              1: SSP1_D3
+              2: reserved
+              3: GPIO
+          u2 4…5:
+            name: BANK0_PIN02, GPMI_D02
+            enum:
+              0: GPMI_D2
+              1: SSP1_D2
+              2: reserved
+              3: GPIO
+          u2 2…3:
+            name: BANK0_PIN01, GPMI_D01
+            enum:
+              0: GPMI_D1
+              1: SSP1_D1
+              2: reserved
+              3: GPIO
+          u2 0…1:
+            name: BANK0_PIN00, GPMI_D00
+            enum:
+              0: GPMI_D1
+              1: SSP1_D1
+              2: reserved
+              3: GPIO
+
+      r32 PINCTRL_MUXSEL1:
+        fields:
+          u6 26…31: RSRVD0
+          u2 24…25:
+            name: BANK0_PIN28, GPMI_RESETN
+            enum:
+              0: GPMI_RESETN
+              1: SSP3_CMD
+              2: reserved
+              3: GPIO
+          u2 22…23:
+            name: BANK0_PIN27, GPMI_CLE
+            enum:
+              0: GPMI_CLE
+              1: SSP3_D2
+              2: SSP3_D5
+              3: GPIO
+          u2 20…21:
+            name: BANK0_PIN26, GPMI_ALE
+            enum:
+              0: GPMI_ALE
+              1: SSP3_D1
+              2: SSP3_D4
+              3: GPIO
+          u2 18…19:
+            name: BANK0_PIN25, GPMI_WRN
+            enum:
+              0: GPMI_WRN
+              1: SSP1_SCK
+              2: reserved
+              3: GPIO
+          u2 16…17:
+            name: BANK0_PIN24, GPMI_RDN
+            enum:
+              0: GPMI_RDN
+              1: SSP3_SCK
+              2: reserved
+              3: GPIO
+          u2 14…15:
+            name: BANK0_PIN23, GPMI_RDY3
+            enum:
+              0: GPMI_READY3
+              1: CAN0_RX
+              2: HSADC_TRIGGER
+              3: GPIO
+          u2 12…13:
+            name: BANK0_PIN22, GPMI_RDY2
+            enum:
+              0: GPMI_READY2
+              1: CAN0_TX
+              2: ENET0_TX_ER
+              3: GPIO
+          u2 10…11:
+            name: BANK0_PIN21, GPMI_RDY1
+            enum:
+              0: GPMI_READY1
+              1: SSP1_CMD
+              2: reserved
+              3: GPIO
+          u2 8…9:
+            name: BANK0_PIN20, GPMI_RDY0
+            enum:
+              0: GPMI_READY0
+              1: SSP1_CARD_DETECT
+              2: USB0_ID
+              3: GPIO
+          u2 6…7:
+            name: BANK0_PIN19, GPMI_CE3N
+            enum:
+              0: GPMI_CE3N
+              1: CAN1_RX
+              2: SAIF1_MCLK
+              3: GPIO
+          u2 4…5:
+            name: BANK0_PIN18, GPMI_CE2N
+            enum:
+              0: GPMI_CE2N
+              1: CAN1_TX
+              2: ENET0_RX_ER
+              3: GPIO
+          u2 2…3:
+            name: BANK0_PIN17, GPMI_CE1N
+            enum:
+              0: GPMI_CE1N
+              1: SSP3_D3
+              2: reserved
+              3: GPIO
+          u2 0…1:
+            name: BANK0_PIN16, GPMI_CE0N
+            enum:
+              0: GPMI_CE0N
+              1: SSP3_D0
+              2: reserved
+              3: GPIO
+
+      r32 PINCTRL_MUXSEL2:
+        fields:
+          u2 30…31:
+            name: BANK1_PIN15, LCD_D15
+            enum:
+              0b00: LCD_D15
+              0b01: reserved
+              0b10: ETM_DA15
+              0b11: GPIO
+          u2 28…29:
+            name: BANK1_PIN14, LCD_D14
+            enum:
+              0b00: LCD_D14
+              0b01: reserved
+              0b10: ETM_DA14
+              0b11: GPIO
+          u2 26…27:
+            name: BANK1_PIN13, LCD_D13
+            enum:
+              0b00: LCD_D13
+              0b01: reserved
+              0b10: ETM_DA13
+              0b11: GPIO
+          u2 24…25:
+            name: BANK1_PIN12, LCD_D12
+            enum:
+              0b00: LCD_D12
+              0b01: reserved
+              0b10: ETM_DA12
+              0b11: GPIO
+          u2 22…23:
+            name: BANK1_PIN11, LCD_D11
+            enum:
+              0b00: LCD_D11
+              0b01: reserved
+              0b10: ETM_DA11
+              0b11: GPIO
+          u2 20…21:
+            name: BANK1_PIN10, LCD_D10
+            enum:
+              0b00: LCD_D10
+              0b01: reserved
+              0b10: ETM_DA10
+              0b11: GPIO
+          u2 18…19:
+            name: BANK1_PIN09, LCD_D09
+            enum:
+              0b00: LCD_D9
+              0b01: ETM_DA4
+              0b10: ETM_DA9
+              0b11: GPIO
+          u2 16…17:
+            name: BANK1_PIN08, LCD_D08
+            enum:
+              0b00: LCD_D8
+              0b01: ETM_DA3
+              0b10: ETM_DA8
+              0b11: GPIO
+          u2 14…15:
+            name: BANK1_PIN07, LCD_D07
+            enum:
+              0b00: LCD_D7
+              0b01: reserved
+              0b10: ETM_DA7
+              0b11: GPIO
+          u2 12…13:
+            name: BANK1_PIN06, LCD_D06
+            enum:
+              0b00: LCD_D6
+              0b01: reserved
+              0b10: ETM_DA6
+              0b11: GPIO
+          u2 10…11:
+            name: BANK1_PIN05, LCD_D05
+            enum:
+              0b00: LCD_D5
+              0b01: reserved
+              0b10: ETM_DA5
+              0b11: GPIO
+          u2 8…9:
+            name: BANK1_PIN04, LCD_D04
+            enum:
+              0b00: LCD_D4
+              0b01: ETM_DA9
+              0b10: ETM_DA4
+              0b11: GPIO
+          u2 6…7:
+            name: BANK1_PIN03, LCD_D03
+            enum:
+              0b00: LCD_D3
+              0b01: ETM_DA8
+              0b10: ETM_DA3
+              0b11: GPIO
+          u2 4…5:
+            name: BANK1_PIN02, LCD_D02
+            enum:
+              0b00: LCD_D2
+              0b01: reserved
+              0b10: ETM_DA2
+              0b11: GPIO
+          u2 2…3:
+            name: BANK1_PIN01, LCD_D01
+            enum:
+              0b00: LCD_D1
+              0b01: reserved
+              0b10: ETM_DA1
+              0b11: GPIO
+          u2 0…1:
+            name: BANK1_PIN00, LCD_D00
+            enum:
+              0b00: LCD_D0
+              0b01: reserved
+              0b10: ETM_DA0
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL3:
+        fields:
+          u2 30…31:
+            name: BANK1_PIN31, LCD_ENABLE
+            enum:
+              0b00: LCD_ENABLE
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 28…29:
+            name: BANK1_PIN30, LCD_DOTCLK
+            enum:
+              0b00: LCD_DOTCLK
+              0b01: SAIF1_MCLK
+              0b10: ETM_TCLK
+              0b11: GPIO
+          u2 26…27:
+            name: BANK1_PIN29, LCD_HSYNC
+            enum:
+              0b00: LCD_HSYNC
+              0b01: SAIF1_SDATA1
+              0b10: ETM_TCTL
+              0b11: GPIO
+          u2 24…25:
+            name: BANK1_PIN28, LCD_VSYNC
+            enum:
+              0b00: LCD_VSYNC
+              0b01: SAIF1_SDATA0
+              0b10: reserved
+              0b11: GPIO
+          u2 22…23:
+            name: BANK1_PIN27, LCD_CS
+            enum:
+              0b00: LCD_CS
+              0b01: LCD_ENABLE
+              0b10: reserved
+              0b11: GPIO
+          u2 20…21:
+            name: BANK1_PIN26, LCD_RS
+            enum:
+              0b00: LCD_RS
+              0b01: LCD_DOTCLK
+              0b10: reserved
+              0b11: GPIO
+          u2 18…19:
+            name: BANK1_PIN25, LCD_WR_RWN
+            enum:
+              0b00: LCD_WR_RWN
+              0b01: LCD_HSYNC
+              0b10: ETM_TCLK
+              0b11: GPIO
+          u2 16…17:
+            name: BANK1_PIN24, LCD_RD_E
+            enum:
+              0b00: LCD_RD_E
+              0b01: LCD_VSYNC
+              0b10: ETM_TCTL
+              0b11: GPIO
+          u2 14…15:
+            name: BANK1_PIN23, LCD_D23
+            enum:
+              0b00: LCD_D23
+              0b01: ENET1_1588_EVENT3_IN
+              0b10: ETM_DA0
+              0b11: GPIO
+          u2 12…13:
+            name: BANK1_PIN22, LCD_D22
+            enum:
+              0b00: LCD_D22
+              0b01: ENET1_1588_EVENT3_OUT
+              0b10: ETM_DA1
+              0b11: GPIO
+          u2 10…11:
+            name: BANK1_PIN21, LCD_D21
+            enum:
+              0b00: LCD_D21
+              0b01: ENET1_1588_EVENT2_IN
+              0b10: ETM_DA2
+              0b11: GPIO
+          u2 8…9:
+            name: BANK1_PIN20, LCD_D20
+            enum:
+              0b00: LCD_D20
+              0b01: ENET1_1588_EVENT2_OUT
+              0b10: ETM_DA3
+              0b11: GPIO
+          u2 6…7:
+            name: BANK1_PIN19, LCD_D19
+            enum:
+              0b00: LCD_D19
+              0b01: reserved
+              0b10: ETM_DA4
+              0b11: GPIO
+          u2 4…5:
+            name: BANK1_PIN18, LCD_D18
+            enum:
+              0b00: LCD_D18
+              0b01: reserved
+              0b10: ETM_DA5
+              0b11: GPIO
+          u2 2…3:
+            name: BANK1_PIN17, LCD_D17
+            enum:
+              0b00: LCD_D17
+              0b01: reserved
+              0b10: ETM_DA6
+              0b11: GPIO
+          u2 0…1:
+            name: BANK1_PIN16, LCD_D16
+            enum:
+              0b00: LCD_D16
+              0b01: reserved
+              0b10: ETM_DA7
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL4:
+        fields:
+          u2 30…31:
+            name: BANK2_PIN15, SSP1_DATA3
+            enum:
+              0b00: SSP1_D3
+              0b01: SSP2_D7
+              0b10: ENET0_1588_EVENT3_IN
+              0b11: GPIO
+          u2 28…29:
+            name: BANK2_PIN14, SSP1_DATA0
+            enum:
+              0b00: SSP1_D0
+              0b01: SSP2_D6
+              0b10: ENET0_1588_EVENT3_OUT
+              0b11: GPIO
+          u2 26…27:
+            name: BANK2_PIN13, SSP1_CMD
+            enum:
+              0b00: SSP1_CMD
+              0b01: SSP2_D2
+              0b10: ENET0_1588_EVENT2_IN
+              0b11: GPIO
+          u2 24…25:
+            name: BANK2_PIN12, SSP1_SCK
+            enum:
+              0b00: SSP1_SCK
+              0b01: SSP2_D1
+              0b10: ENET0_1588_EVENT2_OUT
+              0b11: GPIO
+          u2 22…23: RSRVD0
+          u2 20…21:
+            name: BANK2_PIN10, SSP0_SCK
+            enum:
+              0b00: SSP0_SCK
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 18…19:
+            name: BANK2_PIN09, SSP0_DETECT
+            enum:
+              0b00: SSP0_CARD_DETECT
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 16…17:
+            name: BANK2_PIN08, SSP0_CMD
+            enum:
+              0b00: SSP0_CMD
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 14…15:
+            name: BANK2_PIN07, SSP0_DATA7
+            enum:
+              0b00: SSP0_D7
+              0b01: SSP2_SCK
+              0b10: reserved
+              0b11: GPIO
+          u2 12…13:
+            name: BANK2_PIN06, SSP0_DATA6
+            enum:
+              0b00: SSP0_D6
+              0b01: SSP2_CMD
+              0b10: reserved
+              0b11: GPIO
+          u2 10…11:
+            name: BANK2_PIN05, SSP0_DATA5
+            enum:
+              0b00: SSP0_D5
+              0b01: SSP2_D3
+              0b10: reserved
+              0b11: GPIO
+          u2 8…9:
+            name: BANK2_PIN04, SSP0_DATA4
+            enum:
+              0b00: SSP0_D4
+              0b01: SSP2_D0
+              0b10: reserved
+              0b11: GPIO
+          u2 6…7:
+            name: BANK2_PIN03, SSP0_DATA3
+            enum:
+              0b00: SSP0_D3
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 4…5:
+            name: BANK2_PIN02, SSP0_DATA2
+            enum:
+              0b00: SSP0_D2
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 2…3:
+            name: BANK2_PIN01, SSP0_DATA1
+            enum:
+              0b00: SSP0_D1
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 0…1:
+            name: BANK2_PIN00, SSP0_DATA0
+            enum:
+              0b00: SSP0_D0
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL5:
+        fields:
+          u8 24…31: RSRVD1
+          u2 22…23:
+            name: BANK2_PIN27, SSP3_SS0
+            enum:
+              0b00: SSP3_D3
+              0b01: AUART4_CTS
+              0b10: ENET1_1588_EVENT1_IN
+              0b11: GPIO
+          u2 20…21:
+            name: BANK2_PIN26, SSP3_MISO
+            enum:
+              0b00: SSP3_D0
+              0b01: AUART4_RTS
+              0b10: ENET1_1588_EVENT1_OUT
+              0b11: GPIO
+          u2 18…19:
+            name: BANK2_PIN25, SSP3_MOSI
+            enum:
+              0b00: SSP3_CMD
+              0b01: AUART4_RX
+              0b10: ENET1_1588_EVENT0_IN
+              0b11: GPIO
+          u2 16…17:
+            name: BANK2_PIN24, SSP3_SCK
+            enum:
+              0b00: SSP3_SCK
+              0b01: AUART4_TX
+              0b10: ENET1_1588_EVENT0_OUT
+              0b11: GPIO
+          u4 12…15: RSRVD0
+          u2 10…11:
+            name: BANK2_PIN21, SSP2_SS2
+            enum:
+              0b00: SSP2_D5
+              0b01: SSP2_D2
+              0b10: USB0_OVERCURRENT
+              0b11: GPIO
+          u2 8…9:
+            name: BANK2_PIN20, SSP2_SS1
+            enum:
+              0b00: SSP2_D4
+              0b01: SSP2_D1
+              0b10: USB1_OVERCURRENT
+              0b11: GPIO
+          u2 6…7:
+            name: BANK2_PIN19, SSP2_SS0
+            enum:
+              0b00: SSP2_D3
+              0b01: AUART3_TX
+              0b10: SAIF1_SDATA2
+              0b11: GPIO
+          u2 4…5:
+            name: BANK2_PIN18, SSP2_MISO
+            enum:
+              0b00: SSP2_D0
+              0b01: AUART3_RX
+              0b10: SAIF1_SDATA1
+              0b11: GPIO
+          u2 2…3:
+            name: BANK2_PIN17, SSP2_MOSI
+            enum:
+              0b00: SSP2_CMD
+              0b01: AUART2_TX
+              0b10: SAIF0_SDATA2
+              0b11: GPIO
+          u2 0…1:
+            name: BANK2_PIN16, SSP2_SCK
+            enum:
+              0b00: SSP2_SCK
+              0b01: AUART2_RX
+              0b10: SAIF0_SDATA1
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL6:
+        fields:
+          u2 30…31:
+            name: BANK3_PIN15, AUART3_RTS
+            enum:
+              0b00: AUART3_RTS
+              0b01: CAN1_RX
+              0b10: ENET0_1588_EVENT1_IN
+              0b11: GPIO
+          u2 28…29:
+            name: BANK3_PIN14, AUART3_CTS
+            enum:
+              0b00: AUART3_CTS
+              0b01: CAN1_TX
+              0b10: ENET0_1588_EVENT1_OUT
+              0b11: GPIO
+          u2 26…27:
+            name: BANK3_PIN13, AUART3_TX
+            enum:
+              0b00: AUART3_TX
+              0b01: CAN0_RX
+              0b10: ENET0_1588_EVENT0_IN
+              0b11: GPIO
+          u2 24…25:
+            name: BANK3_PIN12, AUART3_RX
+            enum:
+              0b00: AUART3_RX
+              0b01: CAN0_TX
+              0b10: ENET0_1588_EVENT0_OUT
+              0b11: GPIO
+          u2 22…23:
+            name: BANK3_PIN11, AUART2_RTS
+            enum:
+              0b00: AUART2_RTS
+              0b01: I2C1_SDA
+              0b10: SAIF1_LRCLK
+              0b11: GPIO
+          u2 20…21:
+            name: BANK3_PIN10, AUART2_CTS
+            enum:
+              0b00: AUART2_CTS
+              0b01: I2C1_SCL
+              0b10: SAIF1_BITCLK
+              0b11: GPIO
+          u2 18…19:
+            name: BANK3_PIN09, AUART2_TX
+            enum:
+              0b00: AUART2_TX
+              0b01: SSP3_D2
+              0b10: SSP3_D5
+              0b11: GPIO
+          u2 16…17:
+            name: BANK3_PIN08, AUART2_RX
+            enum:
+              0b00: AUART2_RX
+              0b01: SSP3_D1
+              0b10: SSP3_D4
+              0b11: GPIO
+          u2 14…15:
+            name: BANK3_PIN07, AUART1_RTS
+            enum:
+              0b00: AUART1_RTS
+              0b01: USB0_ID
+              0b10: TIMROT_ROTARYB
+              0b11: GPIO
+          u2 12…13:
+            name: BANK3_PIN06, AUART1_CTS
+            enum:
+              0b00: AUART1_CTS
+              0b01: USB0_OVERCURRENT
+              0b10: TIMROT_ROTARYA
+              0b11: GPIO
+          u2 10…11:
+            name: BANK3_PIN05, AUART1_TX
+            enum:
+              0b00: AUART1_TX
+              0b01: SSP3_CARD_DETECT
+              0b10: PWM_1
+              0b11: GPIO
+          u2 8…9:
+            name: BANK3_PIN04, AUART1_RX
+            enum:
+              0b00: AUART1_RX
+              0b01: SSP2_CARD_DETECT
+              0b10: PWM_0
+              0b11: GPIO
+          u2 6…7:
+            name: BANK3_PIN03, AUART0_RTS
+            enum:
+              0b00: AUART0_RTS
+              0b01: AUART4_TX
+              0b10: DUART_TX
+              0b11: GPIO
+          u2 4…5:
+            name: BANK3_PIN02, AUART0_CTS
+            enum:
+              0b00: AUART0_CTS
+              0b01: AUART4_RX
+              0b10: DUART_RX
+              0b11: GPIO
+          u2 2…3:
+            name: BANK3_PIN01, AUART0_TX
+            enum:
+              0b00: AUART0_TX
+              0b01: I2C0_SDA
+              0b10: DUART_RTS
+              0b11: GPIO
+          u2 0…1:
+            name: BANK3_PIN00, AUART0_RX
+            enum:
+              0b00: AUART0_RX
+              0b01: I2C0_SCL
+              0b10: DUART_CTS
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL7:
+        fields:
+          u2 30…31: RSRVD1
+          u2 28…29:
+            name: BANK3_PIN30, LCD_RESET
+            enum:
+              0b00: LCD_RESET
+              0b01: LCD_VSYNC
+              0b10: reserved
+              0b11: GPIO
+          u2 26…27:
+            name: BANK3_PIN29, PWM4
+            enum:
+              0b00: PWM_4
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 24…25:
+            name: BANK3_PIN28, PWM3
+            enum:
+              0b00: PWM_3
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u2 22…23:
+            name: BANK3_PIN27, SPDIF
+            enum:
+              0b00: SPDIF_TX
+              0b01: reserved
+              0b10: ENET1_RX_ER
+              0b11: GPIO
+          u2 20…21:
+            name: BANK3_PIN26, SAIF1_SDATA0
+            enum:
+              0b00: SAIF1_SDATA0
+              0b01: PWM_7
+              0b10: SAIF0_SDATA1
+              0b11: GPIO
+          u2 18…19:
+            name: BANK3_PIN25, I2C0_SDA
+            enum:
+              0b00: I2C0_SDA
+              0b01: TIMROT_ROTARYB
+              0b10: DUART_TX
+              0b11: GPIO
+          u2 16…17:
+            name: BANK3_PIN24, I2C0_SCL
+            enum:
+              0b00: I2C0_SCL
+              0b01: TIMROT_ROTARYA
+              0b10: DUART_RX
+              0b11: GPIO
+          u2 14…15:
+            name: BANK3_PIN23, SAIF0_SDATA0
+            enum:
+              0b00: SAIF0_SDATA0
+              0b01: PWM_6
+              0b10: AUART4_TX
+              0b11: GPIO
+          u2 12…13:
+            name: BANK3_PIN22, SAIF0_BITCLK
+            enum:
+              0b00: SAIF0_BITCLK
+              0b01: PWM_5
+              0b10: AUART4_RX
+              0b11: GPIO
+          u2 10…11:
+            name: BANK3_PIN21, SAIF0_LRCLK
+            enum:
+              0b00: SAIF0_LRCLK
+              0b01: PWM_4
+              0b10: AUART4_RTS
+              0b11: GPIO
+          u2 8…9:
+            name: BANK3_PIN20, SAIF0_MCLK
+            enum:
+              0b00: SAIF0_MCLK
+              0b01: PWM_3
+              0b10: AUART4_CTS
+              0b11: GPIO
+          u2 6…7: RSRVD0
+          u2 4…5:
+            name: BANK3_PIN18, PWM2
+            enum:
+              0b00: PWM_2
+              0b01: USB0_ID
+              0b10: USB1_OVERCURRENT
+              0b11: GPIO
+          u2 2…3:
+            name: BANK3_PIN17, PWM1
+            enum:
+              0b00: PWM_1
+              0b01: I2C1_SDA
+              0b10: DUART_TX
+              0b11: GPIO
+          u2 0…1:
+            name: BANK3_PIN16, PWM0
+            enum:
+              0b00: PWM_0
+              0b01: I2C1_SCL
+              0b10: DUART_RX
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL8:
+        fields:
+          u2 30…31:
+            name: BANK4_PIN15, ENET0_CRS
+            enum:
+              0b00: ENET0_CRS
+              0b01: ENET1_RX_EN
+              0b10: ENET0_1588_EVENT3_IN
+              0b11: GPIO
+          u2 28…29:
+            name: BANK4_PIN14, ENET0_COL
+            enum:
+              0b00: ENET0_COL
+              0b01: ENET1_TX_EN
+              0b10: ENET0_1588_EVENT3_OUT
+              0b11: GPIO
+          u2 26…27:
+            name: BANK4_PIN13, ENET0_RX_CLK
+            enum:
+              0b00: ENET0_RX_CLK
+              0b01: ENET0_RX_ER
+              0b10: ENET0_1588_EVENT2_IN
+              0b11: GPIO
+          u2 24…25:
+            name: BANK4_PIN12, ENET0_TXD3
+            enum:
+              0b00: ENET0_TXD3
+              0b01: ENET1_TXD1
+              0b10: ENET0_1588_EVENT1_IN
+              0b11: GPIO
+          u2 22…23:
+            name: BANK4_PIN11, ENET0_TXD2
+            enum:
+              0b00: ENET0_TXD2
+              0b01: ENET1_TXD0
+              0b10: ENET0_1588_EVENT1_OUT
+              0b11: GPIO
+          u2 20…21:
+            name: BANK4_PIN10, ENET0_RXD3
+            enum:
+              0b00: ENET0_RXD3
+              0b01: ENET1_RXD1
+              0b10: ENET0_1588_EVENT0_IN
+              0b11: GPIO
+          u2 18…19:
+            name: BANK4_PIN09, ENET0_RXD2
+            enum:
+              0b00: ENET0_RXD2
+              0b01: ENET1_RXD0
+              0b10: ENET0_1588_EVENT0_OUT
+              0b11: GPIO
+          u2 16…17:
+            name: BANK4_PIN08, ENET0_TXD1
+            enum:
+              0b00: ENET0_TXD1
+              0b01: GPMI_READY7
+              0b10: reserved
+              0b11: GPIO
+          u2 14…15:
+            name: BANK4_PIN07, ENET0_TXD0
+            enum:
+              0b00: ENET0_TXD0
+              0b01: GPMI_READY6
+              0b10: reserved
+              0b11: GPIO
+          u2 12…13:
+            name: BANK4_PIN06, ENET0_TX_EN
+            enum:
+              0b00: ENET0_TX_EN
+              0b01: GPMI_READY5
+              0b10: reserved
+              0b11: GPIO
+          u2 10…11:
+            name: BANK4_PIN05, ENET0_TX_CLK
+            enum:
+              0b00: ENET0_TX_CLK
+              0b01: HSADC_TRIGGER
+              0b10: ENET0_1588_EVENT2_OUT
+              0b11: GPIO
+          u2 8…9:
+            name: BANK4_PIN04, ENET0_RXD1
+            enum:
+              0b00: ENET0_RXD1
+              0b01: GPMI_READY4
+              0b10: reserved
+              0b11: GPIO
+          u2 6…7:
+            name: BANK4_PIN03, ENET0_RXD0
+            enum:
+              0b00: ENET0_RXD0
+              0b01: GPMI_CE7N
+              0b10: SAIF1_SDATA2
+              0b11: GPIO
+          u2 4…5:
+            name: BANK4_PIN02, ENET0_RX_EN
+            enum:
+              0b00: ENET0_RX_EN
+              0b01: GPMI_CE6N
+              0b10: SAIF1_SDATA1
+              0b11: GPIO
+          u2 2…3:
+            name: BANK4_PIN01, ENET0_MDIO
+            enum:
+              0b00: ENET0_MDIO
+              0b01: GPMI_CE5N
+              0b10: SAIF0_SDATA2
+              0b11: GPIO
+          u2 0…1:
+            name: BANK4_PIN00, ENET0_MDC
+            enum:
+              0b00: ENET0_MDC
+              0b01: GPMI_CE4N
+              0b10: SAIF0_SDATA1
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL9:
+        fields:
+          u22 10…31: RSRVD1
+          u2 8…9:
+            name: BANK4_PIN20, JTAG_RTCK
+            enum:
+              0b00: JTAG_RTCK
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+          u6 2…7: RSRVD0
+          u2 0…1:
+            name: BANK4_PIN16, ENET_CLK
+            enum:
+              0b00: CLKCTRL_ENET
+              0b01: reserved
+              0b10: reserved
+              0b11: GPIO
+
+      r32 PINCTRL_MUXSEL10:
+        enums:
+          EMI_FN:
+            0: EMI pin function
+            1: reserved
+            2: reserved
+            3: disabled
+        fields:
+          u2 30…31:
+            name: BANK5_PIN15, EMI_DATA15
+            enum: EMI_FN
+          u2 28…29:
+            name: BANK5_PIN14, EMI_DATA14
+            enum: EMI_FN
+          u2 26…27:
+            name: BANK5_PIN13, EMI_DATA13
+            enum: EMI_FN
+          u2 24…25:
+            name: BANK5_PIN12, EMI_DATA12
+            enum: EMI_FN
+          u2 22…23:
+            name: BANK5_PIN11, EMI_DATA11
+            enum: EMI_FN
+          u2 20…21:
+            name: BANK5_PIN10, EMI_DATA10
+            enum: EMI_FN
+          u2 18…19:
+            name: BANK5_PIN09, EMI_DATA9
+            enum: EMI_FN
+          u2 16…17:
+            name: BANK5_PIN08, EMI_DATA8
+            enum: EMI_FN
+          u2 14…15:
+            name: BANK5_PIN07, EMI_DATA7
+            enum: EMI_FN
+          u2 12…13:
+            name: BANK5_PIN06, EMI_DATA6
+            enum: EMI_FN
+          u2 10…11:
+            name: BANK5_PIN05, EMI_DATA5
+            enum: EMI_FN
+          u2 8…9:
+            name: BANK5_PIN04, EMI_DATA4
+            enum: EMI_FN
+          u2 6…7:
+            name: BANK5_PIN03, EMI_DATA3
+            enum: EMI_FN
+          u2 4…5:
+            name: BANK5_PIN02, EMI_DATA2
+            enum: EMI_FN
+          u2 2…3:
+            name: BANK5_PIN01, EMI_DATA1
+            enum: EMI_FN
+          u2 0…1:
+            name: BANK5_PIN00, EMI_DATA0
+            enum: EMI_FN
+
+      r32 PINCTRL_MUXSEL11:
+        enums:
+          EMI_FN:
+            0: EMI pin function
+            1: reserved
+            2: reserved
+            3: disabled
+        fields:
+          u10 22…31: RSRVD1
+          u2 20…21:
+            name: BANK5_PIN26, EMI_DDR_OPEN
+            enum: EMI_FN
+          u4 16…19: RSRVD0
+          u2 14…15:
+            name: BANK5_PIN23, EMI_DQS1
+            enum: EMI_FN
+          u2 12…13:
+            name: BANK5_PIN22, EMI_DQS0
+            enum: EMI_FN
+          u2 10…11:
+            name: BANK5_PIN21, EMI_CLK
+            enum: EMI_FN
+          u2 8…9:
+            name: BANK5_PIN20, EMI_DDR_OPEN_FB
+            enum: EMI_FN
+          u2 6…7:
+            name: BANK5_PIN19, EMI_DQM1
+            enum: EMI_FN
+          u2 4…5:
+            name: BANK5_PIN18, EMI_ODT1
+            enum: EMI_FN
+          u2 2…3:
+            name: BANK5_PIN17, EMI_DQM0
+            enum: EMI_FN
+          u2 0…1:
+            name: BANK5_PIN16, EMI_ODT0
+            enum: EMI_FN
+
+      r32 PINCTRL_MUXSEL12:
+        enums:
+          EMI_FN:
+            0: EMI pin function
+            1: reserved
+            2: reserved
+            3: disabled
+        fields:
+          u2 30…31: RSRVD0
+          u2 28…29:
+            name: BANK6_PIN14, EMI_ADDR14
+            enum: EMI_FN
+          u2 26…27:
+            name: BANK6_PIN13, EMI_ADDR13
+            enum: EMI_FN
+          u2 24…25:
+            name: BANK6_PIN12, EMI_ADDR12
+            enum: EMI_FN
+          u2 22…23:
+            name: BANK6_PIN11, EMI_ADDR11
+            enum: EMI_FN
+          u2 20…21:
+            name: BANK6_PIN10, EMI_ADDR10
+            enum: EMI_FN
+          u2 18…19:
+            name: BANK6_PIN09, EMI_ADDR9
+            enum: EMI_FN
+          u2 16…17:
+            name: BANK6_PIN08, EMI_ADDR8
+            enum: EMI_FN
+          u2 14…15:
+            name: BANK6_PIN07, EMI_ADDR7
+            enum: EMI_FN
+          u2 12…13:
+            name: BANK6_PIN06, EMI_ADDR6
+            enum: EMI_FN
+          u2 10…11:
+            name: BANK6_PIN05, EMI_ADDR5
+            enum: EMI_FN
+          u2 8…9:
+            name: BANK6_PIN04, EMI_ADDR4
+            enum: EMI_FN
+          u2 6…7:
+            name: BANK6_PIN03, EMI_ADDR3
+            enum: EMI_FN
+          u2 4…5:
+            name: BANK6_PIN02, EMI_ADDR2
+            enum: EMI_FN
+          u2 2…3:
+            name: BANK6_PIN01, EMI_ADDR1
+            enum: EMI_FN
+          u2 0…1:
+            name: BANK6_PIN00, EMI_ADDR0
+            enum: EMI_FN
+
+      r32 PINCTRL_MUXSEL13:
+        enums:
+          EMI_FN:
+            0: EMI pin function
+            1: reserved
+            2: reserved
+            3: disabled
+        fields:
+          u14 18…31: RSRVD0
+          u2 16…17:
+            name: BANK6_PIN24, EMI_CKE
+            enum: EMI_FN
+          u2 14…15:
+            name: BANK6_PIN23, EMI_CE1N
+            enum: EMI_FN
+          u2 12…13:
+            name: BANK6_PIN22, EMI_CE0N
+            enum: EMI_FN
+          u2 10…11:
+            name: BANK6_PIN21, EMI_WEN
+            enum: EMI_FN
+          u2 8…9:
+            name: BANK6_PIN20, EMI_RASN
+            enum: EMI_FN
+          u2 6…7:
+            name: BANK6_PIN19, EMI_CASN
+            enum: EMI_FN
+          u2 4…5:
+            name: BANK6_PIN18, EMI_BA2
+            enum: EMI_FN
+          u2 2…3:
+            name: BANK6_PIN17, EMI_BA1
+            enum: EMI_FN
+          u2 0…1:
+            name: BANK6_PIN16, EMI_BA0
+            enum: EMI_FN
+
+      r32 PINCTRL_DRIVE0:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK0_PIN07_V, GPMI_D07_V
+            enum: V
+          u2 28…29:
+            name: BANK0_PIN07_MA, GPMI_D07_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK0_PIN06_V, GPMI_D06_V
+            enum: V
+          u2 24…25:
+            name: BANK0_PIN06_MA, GPMI_D06_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK0_PIN05_V, GPMI_D05_V
+            enum: V
+          u2 20…21:
+            name: BANK0_PIN05_MA, GPMI_D05_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK0_PIN04_V, GPMI_D04_V
+            enum: V
+          u2 16…17:
+            name: BANK0_PIN04_MA, GPMI_D04_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK0_PIN03_V, GPMI_D03_V
+            enum: V
+          u2 12…13:
+            name: BANK0_PIN03_MA, GPMI_D03_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK0_PIN02_V, GPMI_D02_V
+            enum: V
+          u2 8…9:
+            name: BANK0_PIN02_MA, GPMI_D02_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK0_PIN01_V, GPMI_D01_V
+            enum: V
+          u2 4…5:
+            name: BANK0_PIN01_MA, GPMI_D01_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK0_PIN00_V, GPMI_D00_V
+            enum: V
+          u2 0…1:
+            name: BANK0_PIN00_MA, GPMI_D00_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE1:
+        fields:
+          u32 0…31: RSRVD0
+
+      r32 PINCTRL_DRIVE2:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK0_PIN23_V, GPMI_RDY3_V
+            enum: V
+          u2 28…29:
+            name: BANK0_PIN23_MA, GPMI_RDY3_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK0_PIN22_V, GPMI_RDY2_V
+            enum: V
+          u2 24…25:
+            name: BANK0_PIN22_MA, GPMI_RDY2_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK0_PIN21_V, GPMI_RDY1_V
+            enum: V
+          u2 20…21:
+            name: BANK0_PIN21_MA, GPMI_RDY1_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK0_PIN20_V, GPMI_RDY0_V
+            enum: V
+          u2 16…17:
+            name: BANK0_PIN20_MA, GPMI_RDY0_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK0_PIN19_V, GPMI_CE3N_V
+            enum: V
+          u2 12…13:
+            name: BANK0_PIN19_MA, GPMI_CE3N_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK0_PIN18_V, GPMI_CE2N_V
+            enum: V
+          u2 8…9:
+            name: BANK0_PIN18_MA, GPMI_CE2N_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK0_PIN17_V, GPMI_CE1N_V
+            enum: V
+          u2 4…5:
+            name: BANK0_PIN17_MA, GPMI_CE1N_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK0_PIN16_V, GPMI_CE0N_V
+            enum: V
+          u2 0…1:
+            name: BANK0_PIN16_MA, GPMI_CE0N_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE3:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u12 20…31: RSRVD5
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK0_PIN28_V, GPMI_RESETN_V
+            enum: V
+          u2 16…17:
+            name: BANK0_PIN28_MA, GPMI_RESETN_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK0_PIN27_V, GPMI_CLE_V
+            enum: V
+          u2 12…13:
+            name: BANK0_PIN27_MA, GPMI_CLE_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK0_PIN26_V, GPMI_ALE_V
+            enum: V
+          u2 8…9:
+            name: BANK0_PIN26_MA, GPMI_ALE_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK0_PIN25_V, GPMI_WRN_V
+            enum: V
+          u2 4…5:
+            name: BANK0_PIN25_MA, GPMI_WRN_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK0_PIN24_V, GPMI_RDN_V
+            enum: V
+          u2 0…1:
+            name: BANK0_PIN24_MA, GPMI_RDN_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE4:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK1_PIN07_V, LCD_D07_V
+            enum: V
+          u2 28…29:
+            name: BANK1_PIN07_MA, LCD_D07_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK1_PIN06_V, LCD_D06_V
+            enum: V
+          u2 24…25:
+            name: BANK1_PIN06_MA, LCD_D06_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK1_PIN05_V, LCD_D05_V
+            enum: V
+          u2 20…21:
+            name: BANK1_PIN05_MA, LCD_D05_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK1_PIN04_V, LCD_D04_V
+            enum: V
+          u2 16…17:
+            name: BANK1_PIN04_MA, LCD_D04_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK1_PIN03_V, LCD_D03_V
+            enum: V
+          u2 12…13:
+            name: BANK1_PIN03_MA, LCD_D03_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK1_PIN02_V, LCD_D02_V
+            enum: V
+          u2 8…9:
+            name: BANK1_PIN02_MA, LCD_D02_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK1_PIN01_V, LCD_D01_V
+            enum: V
+          u2 4…5:
+            name: BANK1_PIN01_MA, LCD_D01_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK1_PIN00_V, LCD_D00_V
+            enum: V
+          u2 0…1:
+            name: BANK1_PIN00_MA, LCD_D00_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE5:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK1_PIN15_V, LCD_D15_V
+            enum: V
+          u2 28…29:
+            name: BANK1_PIN15_MA, LCD_D15_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK1_PIN14_V, LCD_D14_V
+            enum: V
+          u2 24…25:
+            name: BANK1_PIN14_MA, LCD_D14_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK1_PIN13_V, LCD_D13_V
+            enum: V
+          u2 20…21:
+            name: BANK1_PIN13_MA, LCD_D13_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK1_PIN12_V, LCD_D12_V
+            enum: V
+          u2 16…17:
+            name: BANK1_PIN12_MA, LCD_D12_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK1_PIN11_V, LCD_D11_V
+            enum: V
+          u2 12…13:
+            name: BANK1_PIN11_MA, LCD_D11_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK1_PIN10_V, LCD_D10_V
+            enum: V
+          u2 8…9:
+            name: BANK1_PIN10_MA, LCD_D10_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK1_PIN09_V, LCD_D09_V
+            enum: V
+          u2 4…5:
+            name: BANK1_PIN09_MA, LCD_D09_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK1_PIN08_V, LCD_D08_V
+            enum: V
+          u2 0…1:
+            name: BANK1_PIN08_MA, LCD_D08_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE6:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK1_PIN23_V, LCD_D23_V
+            enum: V
+          u2 28…29:
+            name: BANK1_PIN23_MA, LCD_D23_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK1_PIN22_V, LCD_D22_V
+            enum: V
+          u2 24…25:
+            name: BANK1_PIN22_MA, LCD_D22_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK1_PIN21_V, LCD_D21_V
+            enum: V
+          u2 20…21:
+            name: BANK1_PIN21_MA, LCD_D21_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK1_PIN20_V, LCD_D20_V
+            enum: V
+          u2 16…17:
+            name: BANK1_PIN20_MA, LCD_D20_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK1_PIN19_V, LCD_D19_V
+            enum: V
+          u2 12…13:
+            name: BANK1_PIN19_MA, LCD_D19_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK1_PIN18_V, LCD_D18_V
+            enum: V
+          u2 8…9:
+            name: BANK1_PIN18_MA, LCD_D18_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK1_PIN17_V, LCD_D17_V
+            enum: V
+          u2 4…5:
+            name: BANK1_PIN17_MA, LCD_D17_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK1_PIN16_V, LCD_D16_V
+            enum: V
+          u2 0…1:
+            name: BANK1_PIN16_MA, LCD_D16_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE7:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK1_PIN31_V, LCD_ENABLE_V
+            enum: V
+          u2 28…29:
+            name: BANK1_PIN31_MA, LCD_ENABLE_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK1_PIN30_V, LCD_DOTCLK_V
+            enum: V
+          u2 24…25:
+            name: BANK1_PIN30_MA, LCD_DOTCLK_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK1_PIN29_V, LCD_HSYNC_V
+            enum: V
+          u2 20…21:
+            name: BANK1_PIN29_MA, LCD_HSYNC_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK1_PIN28_V, LCD_VSYNC_V
+            enum: V
+          u2 16…17:
+            name: BANK1_PIN28_MA, LCD_VSYNC_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK1_PIN27_V, LCD_CS_V
+            enum: V
+          u2 12…13:
+            name: BANK1_PIN27_MA, LCD_CS_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK1_PIN26_V, LCD_RS_V
+            enum: V
+          u2 8…9:
+            name: BANK1_PIN26_MA, LCD_RS_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK1_PIN25_V, LCD_WR_RWN_V
+            enum: V
+          u2 4…5:
+            name: BANK1_PIN25_MA, LCD_WR_RWN_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK1_PIN24_V, LCD_RD_E_V
+            enum: V
+          u2 0…1:
+            name: BANK1_PIN24_MA, LCD_RD_E_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE8:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK2_PIN07_V, SSP0_DATA7_V
+            enum: V
+          u2 28…29:
+            name: BANK2_PIN07_MA, SSP0_DATA7_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK2_PIN06_V, SSP0_DATA6_V
+            enum: V
+          u2 24…25:
+            name: BANK2_PIN06_MA, SSP0_DATA6_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK2_PIN05_V, SSP0_DATA5_V
+            enum: V
+          u2 20…21:
+            name: BANK2_PIN05_MA, SSP0_DATA5_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK2_PIN04_V, SSP0_DATA4_V
+            enum: V
+          u2 16…17:
+            name: BANK2_PIN04_MA, SSP0_DATA4_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK2_PIN03_V, SSP0_DATA3_V
+            enum: V
+          u2 12…13:
+            name: BANK2_PIN03_MA, SSP0_DATA3_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK2_PIN02_V, SSP0_DATA2_V
+            enum: V
+          u2 8…9:
+            name: BANK2_PIN02_MA, SSP0_DATA2_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK2_PIN01_V, SSP0_DATA1_V
+            enum: V
+          u2 4…5:
+            name: BANK2_PIN01_MA, SSP0_DATA1_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK2_PIN00_V, SSP0_DATA0_V
+            enum: V
+          u2 0…1:
+            name: BANK2_PIN00_MA, SSP0_DATA0_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE9:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK2_PIN15_V, SSP1_DATA3_V
+            enum: V
+          u2 28…29:
+            name: BANK2_PIN15_MA, SSP1_DATA3_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK2_PIN14_V, SSP1_DATA0_V
+            enum: V
+          u2 24…25:
+            name: BANK2_PIN14_MA, SSP1_DATA0_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK2_PIN13_V, SSP1_CMD_V
+            enum: V
+          u2 20…21:
+            name: BANK2_PIN13_MA, SSP1_CMD_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK2_PIN12_V, SSP1_SCK_V
+            enum: V
+          u2 16…17:
+            name: BANK2_PIN12_MA, SSP1_SCK_MA
+            enum: MA
+          u4 12…15: RSRVD3
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK2_PIN10_V, SSP0_SCK_V
+            enum: V
+          u2 8…9:
+            name: BANK2_PIN10_MA, SSP0_SCK_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK2_PIN09_V, SSP0_DETECT_V
+            enum: V
+          u2 4…5:
+            name: BANK2_PIN09_MA, SSP0_DETECT_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK2_PIN08_V, SSP0_CMD_V
+            enum: V
+          u2 0…1:
+            name: BANK2_PIN08_MA, SSP0_CMD_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE10:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u8 24…31: RSRVD6
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK2_PIN21_V, SSP2_SS2_V
+            enum: V
+          u2 20…21:
+            name: BANK2_PIN21_MA, SSP2_SS2_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK2_PIN20_V, SSP2_SS1_V
+            enum: V
+          u2 16…17:
+            name: BANK2_PIN20_MA, SSP2_SS1_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK2_PIN19_V, SSP2_SS0_V
+            enum: V
+          u2 12…13:
+            name: BANK2_PIN19_MA, SSP2_SS0_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK2_PIN18_V, SSP2_MISO_V
+            enum: V
+          u2 8…9:
+            name: BANK2_PIN18_MA, SSP2_MISO_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK2_PIN17_V, SSP2_MOSI_V
+            enum: V
+          u2 4…5:
+            name: BANK2_PIN17_MA, SSP2_MOSI_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK2_PIN16_V, SSP2_SCK_V
+            enum: V
+          u2 0…1:
+            name: BANK2_PIN16_MA, SSP2_SCK_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE11:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u16 16…31: RSRVD4
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK2_PIN27_V, SSP3_SS0_V
+            enum: V
+          u2 12…13:
+            name: BANK2_PIN27_MA, SSP3_SS0_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK2_PIN26_V, SSP3_MISO_V
+            enum: V
+          u2 8…9:
+            name: BANK2_PIN26_MA, SSP3_MISO_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK2_PIN25_V, SSP3_MOSI_V
+            enum: V
+          u2 4…5:
+            name: BANK2_PIN25_MA, SSP3_MOSI_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK2_PIN24_V, SSP3_SCK_V
+            enum: V
+          u2 0…1:
+            name: BANK2_PIN24_MA, SSP3_SCK_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE12:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK3_PIN07_V, AUART1_RTS_V
+            enum: V
+          u2 28…29:
+            name: BANK3_PIN07_MA, AUART1_RTS_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK3_PIN06_V, AUART1_CTS_V
+            enum: V
+          u2 24…25:
+            name: BANK3_PIN06_MA, AUART1_CTS_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK3_PIN05_V, AUART1_TX_V
+            enum: V
+          u2 20…21:
+            name: BANK3_PIN05_MA, AUART1_TX_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK3_PIN04_V, AUART1_RX_V
+            enum: V
+          u2 16…17:
+            name: BANK3_PIN04_MA, AUART1_RX_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK3_PIN03_V, AUART0_RTS_V
+            enum: V
+          u2 12…13:
+            name: BANK3_PIN03_MA, AUART0_RTS_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK3_PIN02_V, AUART0_CTS_V
+            enum: V
+          u2 8…9:
+            name: BANK3_PIN02_MA, AUART0_CTS_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK3_PIN01_V, AUART0_TX_V
+            enum: V
+          u2 4…5:
+            name: BANK3_PIN01_MA, AUART0_TX_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK3_PIN00_V, AUART0_RX_V
+            enum: V
+          u2 0…1:
+            name: BANK3_PIN00_MA, AUART0_RX_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE13:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK3_PIN15_V, AUART3_RTS_V
+            enum: V
+          u2 28…29:
+            name: BANK3_PIN15_MA, AUART3_RTS_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK3_PIN14_V, AUART3_CTS_V
+            enum: V
+          u2 24…25:
+            name: BANK3_PIN14_MA, AUART3_CTS_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK3_PIN13_V, AUART3_TX_V
+            enum: V
+          u2 20…21:
+            name: BANK3_PIN13_MA, AUART3_TX_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK3_PIN12_V, AUART3_RX_V
+            enum: V
+          u2 16…17:
+            name: BANK3_PIN12_MA, AUART3_RX_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK3_PIN11_V, AUART2_RTS_V
+            enum: V
+          u2 12…13:
+            name: BANK3_PIN11_MA, AUART2_RTS_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK3_PIN10_V, AUART2_CTS_V
+            enum: V
+          u2 8…9:
+            name: BANK3_PIN10_MA, AUART2_CTS_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK3_PIN09_V, AUART2_TX_V
+            enum: V
+          u2 4…5:
+            name: BANK3_PIN09_MA, AUART2_TX_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK3_PIN08_V, AUART2_RX_V
+            enum: V
+          u2 0…1:
+            name: BANK3_PIN08_MA, AUART2_RX_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE14:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK3_PIN23_V, SAIF0_SDATA0_V
+            enum: V
+          u2 28…29:
+            name: BANK3_PIN23_MA, SAIF0_SDATA0_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK3_PIN22_V, SAIF0_BITCLK_V
+            enum: V
+          u2 24…25:
+            name: BANK3_PIN22_MA, SAIF0_BITCLK_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK3_PIN21_V, SAIF0_LRCLK_V
+            enum: V
+          u2 20…21:
+            name: BANK3_PIN21_MA, SAIF0_LRCLK_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK3_PIN20_V, SAIF0_MCLK_V
+            enum: V
+          u2 16…17:
+            name: BANK3_PIN20_MA, SAIF0_MCLK_MA
+            enum: MA
+          u4 12…15: RSRVD3
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK3_PIN18_V, PWM2_V
+            enum: V
+          u2 8…9:
+            name: BANK3_PIN18_MA, PWM2_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK3_PIN17_V, PWM1_V
+            enum: V
+          u2 4…5:
+            name: BANK3_PIN17_MA, PWM1_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK3_PIN16_V, PWM0_V
+            enum: V
+          u2 0…1:
+            name: BANK3_PIN16_MA, PWM0_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE15:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u4 28…31: RSRVD7
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK3_PIN30_V, LCD_RESET_V
+            enum: V
+          u2 24…25:
+            name: BANK3_PIN30_MA, LCD_RESET_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK3_PIN29_V, PWM4_V
+            enum: V
+          u2 20…21:
+            name: BANK3_PIN29_MA, PWM4_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK3_PIN28_V, PWM3_V
+            enum: V
+          u2 16…17:
+            name: BANK3_PIN28_MA, PWM3_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK3_PIN27_V, SPDIF_V
+            enum: V
+          u2 12…13:
+            name: BANK3_PIN27_MA, SPDIF_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK3_PIN26_V, SAIF1_SDATA0_V
+            enum: V
+          u2 8…9:
+            name: BANK3_PIN26_MA, SAIF1_SDATA0_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK3_PIN25_V, I2C0_SDA_V
+            enum: V
+          u2 4…5:
+            name: BANK3_PIN25_MA, I2C0_SDA_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK3_PIN24_V, I2C0_SCL_V
+            enum: V
+          u2 0…1:
+            name: BANK3_PIN24_MA, I2C0_SCL_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE16:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK4_PIN07_V, ENET0_TXD0_V
+            enum: V
+          u2 28…29:
+            name: BANK4_PIN07_MA, ENET0_TXD0_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK4_PIN06_V, ENET0_TX_EN_V
+            enum: V
+          u2 24…25:
+            name: BANK4_PIN06_MA, ENET0_TX_EN_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK4_PIN05_V, ENET0_TX_CLK_V
+            enum: V
+          u2 20…21:
+            name: BANK4_PIN05_MA, ENET0_TX_CLK_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK4_PIN04_V, ENET0_RXD1_V
+            enum: V
+          u2 16…17:
+            name: BANK4_PIN04_MA, ENET0_RXD1_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK4_PIN03_V, ENET0_RXD0_V
+            enum: V
+          u2 12…13:
+            name: BANK4_PIN03_MA, ENET0_RXD0_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK4_PIN02_V, ENET0_RX_EN_V
+            enum: V
+          u2 8…9:
+            name: BANK4_PIN02_MA, ENET0_RX_EN_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK4_PIN01_V, ENET0_MDIO_V
+            enum: V
+          u2 4…5:
+            name: BANK4_PIN01_MA, ENET0_MDIO_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK4_PIN00_V, ENET0_MDC_V
+            enum: V
+          u2 0…1:
+            name: BANK4_PIN00_MA, ENET0_MDC_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE17:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u1 31: RSRVD7
+          u1 30:
+            name: BANK4_PIN15_V, ENET0_CRS_V
+            enum: V
+          u2 28…29:
+            name: BANK4_PIN15_MA, ENET0_CRS_MA
+            enum: MA
+          u1 27: RSRVD6
+          u1 26:
+            name: BANK4_PIN14_V, ENET0_COL_V
+            enum: V
+          u2 24…25:
+            name: BANK4_PIN14_MA, ENET0_COL_MA
+            enum: MA
+          u1 23: RSRVD5
+          u1 22:
+            name: BANK4_PIN13_V, ENET0_RX_CLK_V
+            enum: V
+          u2 20…21:
+            name: BANK4_PIN13_MA, ENET0_RX_CLK_MA
+            enum: MA
+          u1 19: RSRVD4
+          u1 18:
+            name: BANK4_PIN12_V, ENET0_TXD3_V
+            enum: V
+          u2 16…17:
+            name: BANK4_PIN12_MA, ENET0_TXD3_MA
+            enum: MA
+          u1 15: RSRVD3
+          u1 14:
+            name: BANK4_PIN11_V, ENET0_TXD2_V
+            enum: V
+          u2 12…13:
+            name: BANK4_PIN11_MA, ENET0_TXD2_MA
+            enum: MA
+          u1 11: RSRVD2
+          u1 10:
+            name: BANK4_PIN10_V, ENET0_RXD3_V
+            enum: V
+          u2 8…9:
+            name: BANK4_PIN10_MA, ENET0_RXD3_MA
+            enum: MA
+          u1 7: RSRVD1
+          u1 6:
+            name: BANK4_PIN09_V, ENET0_RXD2_V
+            enum: V
+          u2 4…5:
+            name: BANK4_PIN09_MA, ENET0_RXD2_MA
+            enum: MA
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK4_PIN08_V, ENET0_TXD1_V
+            enum: V
+          u2 0…1:
+            name: BANK4_PIN08_MA, ENET0_TXD1_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE18:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u12 20…31: RSRVD3
+          u12 19: RSRVD2
+          u1 18:
+            name: BANK4_PIN20_V, JTAG_RTCK_V
+            enum: V
+          u2 16…17:
+            name: BANK4_PIN20_MA, JTAG_RTCK_MA
+            enum: MA
+          u12 4…15: RSRVD1
+          u1 3: RSRVD0
+          u1 2:
+            name: BANK4_PIN16_V, ENET_CLK_V
+            enum: V
+          u2 0…1:
+            name: BANK4_PIN16_MA, ENET_CLK_MA
+            enum: MA
+
+      r32 PINCTRL_DRIVE19:
+        enums:
+          V:
+            0: 1.8V
+            1: 3.3V
+          MA:
+            0: low drive strength
+            1: medium drive strength
+            2: high drive strength
+            3: reserved
+        fields:
+          u32 0…31: RSRVD0
+
+    registers:
+      r32 0x0000: PINCTRL_CTRL
+
+      r32 0x0100: PINCTRL_MUXSEL0
+      r32 0x0110: PINCTRL_MUXSEL1
+      r32 0x0120: PINCTRL_MUXSEL2
+      r32 0x0130: PINCTRL_MUXSEL3
+      r32 0x0140: PINCTRL_MUXSEL4
+      r32 0x0150: PINCTRL_MUXSEL5
+      r32 0x0160: PINCTRL_MUXSEL6
+      r32 0x0170: PINCTRL_MUXSEL7
+      r32 0x0180: PINCTRL_MUXSEL8
+      r32 0x0190: PINCTRL_MUXSEL9
+      r32 0x01a0: PINCTRL_MUXSEL10
+      r32 0x01b0: PINCTRL_MUXSEL11
+      r32 0x01c0: PINCTRL_MUXSEL12
+      r32 0x01d0: PINCTRL_MUXSEL13
+
+      r32 0x0300: PINCTRL_DRIVE0
+      r32 0x0310: PINCTRL_DRIVE1
+      r32 0x0320: PINCTRL_DRIVE2
+      r32 0x0330: PINCTRL_DRIVE3
+      r32 0x0340: PINCTRL_DRIVE4
+      r32 0x0350: PINCTRL_DRIVE5
+      r32 0x0360: PINCTRL_DRIVE6
+      r32 0x0370: PINCTRL_DRIVE7
+      r32 0x0380: PINCTRL_DRIVE8
+      r32 0x0390: PINCTRL_DRIVE9
+      r32 0x03a0: PINCTRL_DRIVE10
+      r32 0x03b0: PINCTRL_DRIVE11
+      r32 0x03c0: PINCTRL_DRIVE12
+      r32 0x03d0: PINCTRL_DRIVE13
+      r32 0x03e0: PINCTRL_DRIVE14
+      r32 0x03f0: PINCTRL_DRIVE15
+      r32 0x0400: PINCTRL_DRIVE16
+      r32 0x0410: PINCTRL_DRIVE17
+      r32 0x0420: PINCTRL_DRIVE18
+      r32 0x0430: PINCTRL_DRIVE19
+
+  PINCTRL_Flags:
+    size: 0x50
+    types:
+      r32 BANK0:
+        fields:
+          u3 29…31: RSRVD1
+          u1 28: BANK0_PIN28, GPMI_RESETN
+          u1 27: BANK0_PIN27, GPMI_CLE
+          u1 26: BANK0_PIN26, GPMI_ALE
+          u1 25: BANK0_PIN25, GPMI_WRN
+          u1 24: BANK0_PIN24, GPMI_RDN
+          u1 23: BANK0_PIN23, GPMI_RDY3
+          u1 22: BANK0_PIN22, GPMI_RDY2
+          u1 21: BANK0_PIN21, GPMI_RDY1
+          u1 20: BANK0_PIN20, GPMI_RDY0
+          u1 19: BANK0_PIN19, GPMI_CE3N
+          u1 18: BANK0_PIN18, GPMI_CE2N
+          u1 17: BANK0_PIN17, GPMI_CE1N
+          u1 16: BANK0_PIN16, GPMI_CE0N
+          u8 8…15: RSRVD0
+          u1 7:  BANK0_PIN7, GPMI_D07
+          u1 6:  BANK0_PIN6, GPMI_D06
+          u1 5:  BANK0_PIN5, GPMI_D05
+          u1 4:  BANK0_PIN4, GPMI_D04
+          u1 3:  BANK0_PIN3, GPMI_D03
+          u1 2:  BANK0_PIN2, GPMI_D02
+          u1 1:  BANK0_PIN1, GPMI_D01
+          u1 0:  BANK0_PIN0, GPMI_D00
+
+      r32 BANK1:
+        fields:
+          u1 31: BANK1_PIN31, LCD_ENABLE
+          u1 30: BANK1_PIN30, LCD_DOTCLK
+          u1 29: BANK1_PIN29, LCD_HSYNC
+          u1 28: BANK1_PIN28, LCD_VSYNC
+          u1 27: BANK1_PIN27, LCD_CS
+          u1 26: BANK1_PIN26, LCD_RS
+          u1 25: BANK1_PIN25, LCD_WR_RWN
+          u1 24: BANK1_PIN24, LCD_RD_E
+          u1 23: BANK1_PIN23, LCD_D23
+          u1 22: BANK1_PIN22, LCD_D22
+          u1 21: BANK1_PIN21, LCD_D21
+          u1 20: BANK1_PIN20, LCD_D20
+          u1 19: BANK1_PIN19, LCD_D19
+          u1 18: BANK1_PIN18, LCD_D18
+          u1 17: BANK1_PIN17, LCD_D17
+          u1 16: BANK1_PIN16, LCD_D16
+          u1 15: BANK1_PIN15, LCD_D15
+          u1 14: BANK1_PIN14, LCD_D14
+          u1 13: BANK1_PIN13, LCD_D13
+          u1 12: BANK1_PIN12, LCD_D12
+          u1 11: BANK1_PIN11, LCD_D11
+          u1 10: BANK1_PIN10, LCD_D10
+          u1 9:  BANK1_PIN9, LCD_D9
+          u1 8:  BANK1_PIN8, LCD_D8
+          u1 7:  BANK1_PIN7, LCD_D7
+          u1 6:  BANK1_PIN6, LCD_D6
+          u1 5:  BANK1_PIN5, LCD_D5
+          u1 4:  BANK1_PIN4, LCD_D4
+          u1 3:  BANK1_PIN3, LCD_D3
+          u1 2:  BANK1_PIN2, LCD_D2
+          u1 1:  BANK1_PIN1, LCD_D1
+          u1 0:  BANK1_PIN0, LCD_D0
+
+      r32 BANK2:
+        fields:
+          u4 28…31: RSRVD2
+          u1 27: BANK2_PIN27, SSP3_SS0
+          u1 26: BANK2_PIN26, SSP3_MISO
+          u1 25: BANK2_PIN25, SSP3_MOSI
+          u1 24: BANK2_PIN24, SSP3_SCK
+          u2 22…23: RSRVD1
+          u1 21: BANK2_PIN21, SSP2_SS2
+          u1 20: BANK2_PIN20, SSP2_SS1
+          u1 19: BANK2_PIN19, SSP2_SS0
+          u1 18: BANK2_PIN18, SSP2_MISO
+          u1 17: BANK2_PIN17, SSP2_MOSI
+          u1 16: BANK2_PIN16, SSP2_SCK
+          u1 15: BANK2_PIN15, SSP1_DATA3
+          u1 14: BANK2_PIN14, SSP1_DATA0
+          u1 13: BANK2_PIN13, SSP1_CMD
+          u1 12: BANK2_PIN12, SSP1_SCK
+          u1 11: RSRVD0
+          u1 10: BANK2_PIN10, SSP0_SCK
+          u1 9:  BANK2_PIN9, SSP0_DETECT
+          u1 8:  BANK2_PIN8, SSP0_CMD
+          u1 7:  BANK2_PIN7, SSP0_DATA7
+          u1 6:  BANK2_PIN6, SSP0_DATA6
+          u1 5:  BANK2_PIN5, SSP0_DATA5
+          u1 4:  BANK2_PIN4, SSP0_DATA4
+          u1 3:  BANK2_PIN3, SSP0_DATA3
+          u1 2:  BANK2_PIN2, SSP0_DATA2
+          u1 1:  BANK2_PIN1, SSP0_DATA1
+          u1 0:  BANK2_PIN0, SSP0_DATA0
+
+      r32 BANK3:
+        fields:
+          u1 31: RSRVD1
+          u1 30: BANK3_PIN30, LCD_RESET
+          u1 29: BANK3_PIN29, PWM4
+          u1 28: BANK3_PIN28, PWM3
+          u1 27: BANK3_PIN27, SPDIF
+          u1 26: BANK3_PIN26, SAIF1_SDATA0
+          u1 25: BANK3_PIN25, I2C0_SDA
+          u1 24: BANK3_PIN24, I2C0_SCL
+          u1 23: BANK3_PIN23, SAIF0_SDATA0
+          u1 22: BANK3_PIN22, SAIF0_BITCLK
+          u1 21: BANK3_PIN21, SAIF0_LRCLK
+          u1 20: BANK3_PIN20, SAIF0_MCLK
+          u1 19: RSRVD0
+          u1 18: BANK3_PIN18, PWM2
+          u1 17: BANK3_PIN17, PWM1
+          u1 16: BANK3_PIN16, PWM0
+          u1 15: BANK3_PIN15, AUART3_RTS
+          u1 14: BANK3_PIN14, AUART3_CTS
+          u1 13: BANK3_PIN13, AUART3_TX
+          u1 12: BANK3_PIN12, AUART3_RX
+          u1 11: BANK3_PIN11, AUART2_RTS
+          u1 10: BANK3_PIN10, AUART2_CTS
+          u1 9:  BANK3_PIN9, AUART2_TX
+          u1 8:  BANK3_PIN8, AUART2_RX
+          u1 7:  BANK3_PIN7, AUART1_RTS
+          u1 6:  BANK3_PIN6, AUART1_CTS
+          u1 5:  BANK3_PIN5, AUART1_TX
+          u1 4:  BANK3_PIN4, AUART1_RX
+          u1 3:  BANK3_PIN3, AUART0_RTS
+          u1 2:  BANK3_PIN2, AUART0_CTS
+          u1 1:  BANK3_PIN1, AUART0_TX
+          u1 0:  BANK3_PIN0, AUART0_RX
+
+      r32 BANK4:
+        fields:
+          u11 21…31: RSRVD1 
+          u1 20: BANK4_PIN20, JTAG_RTCK
+          u3 17…19: RSRVD0
+          u1 16: BANK4_PIN16, ENET_CLK
+          u1 15: BANK4_PIN15, ENET0_CRS
+          u1 14: BANK4_PIN14, ENET0_COL
+          u1 13: BANK4_PIN13, ENET0_RX_CLK
+          u1 12: BANK4_PIN12, ENET0_TXD3
+          u1 11: BANK4_PIN11, ENET0_TXD2
+          u1 10: BANK4_PIN10, ENET0_RXD3
+          u1 9:  BANK4_PIN9, ENET0_RXD2
+          u1 8:  BANK4_PIN8, ENET0_TXD1
+          u1 7:  BANK4_PIN7, ENET0_TXD0
+          u1 6:  BANK4_PIN6, ENET0_TX_EN
+          u1 5:  BANK4_PIN5, ENET0_TX_CLK
+          u1 4:  BANK4_PIN4, ENET0_RXD1
+          u1 3:  BANK4_PIN3, ENET0_RXD0
+          u1 2:  BANK4_PIN2, ENET0_RX_EN
+          u1 1:  BANK4_PIN1, ENET0_MDIO
+          u1 0:  BANK4_PIN0, ENET0_MDC
+
+    registers:
+      r32 0x00: BANK0
+      r32 0x10: BANK1
+      r32 0x20: BANK2
+      r32 0x30: BANK3
+      r32 0x40: BANK4
+
+  PINCTRL_EMIFlags:
+    size: 0x20
+    types:
+      r32 BANK5:
+        fields:
+          u5 27…31: RSRVD1
+          u1 26: BANK5_PIN26, EMI_DDR_OPEN
+          u2 24…25: RSRVD0
+          u1 23: BANK5_PIN23, EMI_DQS1
+          u1 22: BANK5_PIN22, EMI_DQS0
+          u1 21: BANK5_PIN21, EMI_CLK
+          u1 20: BANK5_PIN20, EMI_DDR_OPEN_FB
+          u1 19: BANK5_PIN19, EMI_DQM1
+          u1 18: BANK5_PIN18, EMI_ODT1
+          u1 17: BANK5_PIN17, EMI_DQM0
+          u1 16: BANK5_PIN16, EMI_ODT0
+          u1 15: BANK5_PIN15, EMI_DATA15
+          u1 14: BANK5_PIN14, EMI_DATA14
+          u1 13: BANK5_PIN13, EMI_DATA13
+          u1 12: BANK5_PIN12, EMI_DATA12
+          u1 11: BANK5_PIN11, EMI_DATA11
+          u1 10: BANK5_PIN10, EMI_DATA10
+          u1 9:  BANK5_PIN9, EMI_DATA9
+          u1 8:  BANK5_PIN8, EMI_DATA8
+          u1 7:  BANK5_PIN7, EMI_DATA7
+          u1 6:  BANK5_PIN6, EMI_DATA6
+          u1 5:  BANK5_PIN5, EMI_DATA5
+          u1 4:  BANK5_PIN4, EMI_DATA4
+          u1 3:  BANK5_PIN3, EMI_DATA3
+          u1 2:  BANK5_PIN2, EMI_DATA2
+          u1 1:  BANK5_PIN1, EMI_DATA1
+          u1 0:  BANK5_PIN0, EMI_DATA0
+
+      r32 BANK6:
+        fields:
+          u7 25…31: RSRVD1
+          u1 24: BANK6_PIN24, EMI_CKE
+          u1 23: BANK6_PIN23, EMI_CE1N
+          u1 22: BANK6_PIN22, EMI_CE0N
+          u1 21: BANK6_PIN21, EMI_WEN
+          u1 20: BANK6_PIN20, EMI_RASN
+          u1 19: BANK6_PIN19, EMI_CASN
+          u1 18: BANK6_PIN18, EMI_BA2
+          u1 17: BANK6_PIN17, EMI_BA1
+          u1 16: BANK6_PIN16, EMI_BA0
+          u1 15: RSRVD0
+          u1 14: BANK6_PIN14, EMI_ADDR14
+          u1 13: BANK6_PIN13, EMI_ADDR13
+          u1 12: BANK6_PIN12, EMI_ADDR12
+          u1 11: BANK6_PIN11, EMI_ADDR11
+          u1 10: BANK6_PIN10, EMI_ADDR10
+          u1 9:  BANK6_PIN9,  EMI_ADDR9
+          u1 8:  BANK6_PIN8, EMI_ADDR8
+          u1 7:  BANK6_PIN7, EMI_ADDR7
+          u1 6:  BANK6_PIN6, EMI_ADDR6
+          u1 5:  BANK6_PIN5, EMI_ADDR5
+          u1 4:  BANK6_PIN4, EMI_ADDR4
+          u1 3:  BANK6_PIN3, EMI_ADDR3
+          u1 2:  BANK6_PIN2, EMI_ADDR2
+          u1 1:  BANK6_PIN1, EMI_ADDR1
+          u1 0:  BANK6_PIN0, EMI_ADDR0
+
+    registers:
+      r32 0x00: BANK5
+      r32 0x10: BANK6
+
+  PINCTRL_EMI:
+    size: 0x150
+    types:
+      r32 PINCTRL_EMI_ODT_CTRL:
+        enums:
+          CALIB:
+            0: Disabled
+            1: 1-step adjustment
+            2: 2-step adjustment
+            3: 3-step adjustment
+          TLOAD:
+            0: Disabled
+            1: 75 Ohm
+            2: 150 Ohm
+            3: 50 Ohm
+        fields:
+          u4 28…31: RSRVD1
+          u2 26…27:
+            name: ADDRESS_CALIB
+            enum: CALIB
+          u2 24…25:
+            name: ADDRESS_TLOAD
+            enum: TLOAD
+          u2 22…23:
+            name: CONTROL_CALIB
+            enum: CALIB
+          u2 20…21:
+            name: CONTROL_TLOAD
+            enum: TLOAD
+          u2 18…19:
+            name: DUALPAD_CALIB
+            enum: CALIB
+          u2 16…17:
+            name: DUALPAD_TLOAD
+            enum: TLOAD
+          u2 14…15:
+            name: SLICE3_CALIB
+            enum: CALIB
+          u2 12…13:
+            name: SLICE3_TLOAD
+            enum: TLOAD
+          u2 10…11:
+            name: SLICE2_CALIB
+            enum: CALIB
+          u2 8…9:
+            name: SLICE2_TLOAD
+            enum: TLOAD
+          u2 6…7:
+            name: SLICE1_CALIB
+            enum: CALIB
+          u2 4…5:
+            name: SLICE1_TLOAD
+            enum: TLOAD
+          u2 2…3:
+            name: SLICE0_CALIB
+            enum: CALIB
+          u2 0…1:
+            name: SLICE0_TLOAD
+            enum: TLOAD
+
+      r32 PINCTRL_EMI_DS_CTRL:
+        enums:
+          MA:
+            0: 5 mA
+            1: 10 mA
+            2: 20 mA
+            3: reserved
+        fields:
+          u14 18…31: RSRVD1
+          u2 16…17:
+            name: DDR_MODE
+            enum:
+              0: mDDR (LPDDR1) mode
+              1: disabled
+              2: LVDDR2 mode
+              3: DDR2 mode
+          u2 14…15: RSRVD0
+          u2 12…13:
+            name: ADDRESS_MA
+            enum: MA
+          u2 10…11:
+            name: CONTROL_MA
+            enum: MA
+          u2 8…9:
+            name: DUALPAD_MA
+            enum: MA
+          u2 6…7:
+            name: SLICE3_MA
+            enum: MA
+          u2 4…5:
+            name: SLICE2_MA
+            enum: MA
+          u2 2…3:
+            name: SLICE1_MA
+            enum: MA
+          u2 0…1:
+            name: SLICE0_MA
+            enum: MA
+
+    registers:
+      r32 0x000: PINCTRL_EMI_ODT_CTRL
+      r32 0x110: PINCTRL_EMI_DS_CTRL
+
+instances:
+  PINCTRL_Base      0x80018000: PINCTRL
+  PINCTRL_Flags     0x80018600: PINCTRL_PULL
+  PINCTRL_EMIFlags  0x80018650: PINCTRL_PULL2
+  PINCTRL_Flags     0x80018700: PINCTRL_DOUT
+  PINCTRL_Flags     0x80018900: PINCTRL_DIN
+  PINCTRL_Flags     0x80018b00: PINCTRL_DOE
+  PINCTRL_Flags     0x80019000: PINCTRL_PIN2IRQ
+  PINCTRL_Flags     0x80019100: PINCTRL_IRQEN
+  PINCTRL_Flags     0x80019200: PINCTRL_IRQLEVEL
+  PINCTRL_Flags     0x80019300: PINCTRL_IRQPOL
+  PINCTRL_Flags     0x80019400: PINCTRL_IRQSTAT
+  PINCTRL_EMI       0x80019a40: PINCTRL_EMI
