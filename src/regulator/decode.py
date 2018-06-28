@@ -1,5 +1,6 @@
 import attr
 import bitstruct
+import sys
 import yaml
 from prettyprinter import pprint
 from sortedcontainers import SortedListWithKey
@@ -56,18 +57,22 @@ class Type:
         self.kind = Kind.from_str(self.kind)
         fields = SortedListWithKey(key=lambda x: x.location)
         for k, v in self.fields.items():
-            kind, location = k.split()
-            if isinstance(v, str):
-                name = v
-                config = {}
-            else:
-                name = v.pop('name')
-                config = v
-            if "enum" in config.keys() and isinstance(config["enum"], str):
-                assert config["enum"] in self.enums.keys()
-                config["enum"] = self.enums[config["enum"]]
-            field = Field(name, kind, location, **config)
-            fields.add(field)
+            try:
+                kind, location = k.split()
+                if isinstance(v, str):
+                    name = v
+                    config = {}
+                else:
+                    name = v.pop('name')
+                    config = v
+                if "enum" in config.keys() and isinstance(config["enum"], str):
+                    assert config["enum"] in self.enums.keys()
+                    config["enum"] = self.enums[config["enum"]]
+                field = Field(name, kind, location, **config)
+                fields.add(field)
+            except:
+                sys.stderr.write("Note: in field '{}':\n".format(k))
+                raise
         self.fields = fields
 
     def __len__(self):
@@ -104,22 +109,30 @@ class Cluster:
     def __attrs_post_init__(self):
         types = {}
         for k, v in self.types.items():
-            kind, name = k.split()
-            assert kind in ['r32']
-            types[name] = Type(name, kind, **v)
+            try:
+                kind, name = k.split()
+                assert kind in ['r32']
+                types[name] = Type(name, kind, **v)
+            except:
+                sys.stderr.write("Note: in type '{}':\n".format(k))
+                raise
         self.types = types
 
         registers = SortedListWithKey(key=lambda x: x.location)
         for k, v in self.registers.items():
-            kind, location = k.split(' ', 1)
-            if isinstance(v, str):
-                name = v
-                config = {}
-            else:
-                name = v.pop('name')
-                config = v
-            register = Register(name, kind, location, config.get('type'))
-            registers.add(register)
+            try:
+                kind, location = k.split(' ', 1)
+                if isinstance(v, str):
+                    name = v
+                    config = {}
+                else:
+                    name = v.pop('name')
+                    config = v
+                register = Register(name, kind, location, config.get('type'))
+                registers.add(register)
+            except:
+                sys.stderr.write("Note: in register '{}':\n".format(k))
+                raise
         self.registers = registers
 
     @property
@@ -165,18 +178,26 @@ class Decoder:
 
         clusters = {}
         for name, config in layout['clusters'].items():
-            cluster = Cluster(name, **config)
-            clusters[name] = cluster
+            try:
+                cluster = Cluster(name, **config)
+                clusters[name] = cluster
+            except:
+                sys.stderr.write("Note: in cluster '{}':\n".format(name))
+                raise
 
         instances = {}
         for k, v in layout['instances'].items():
-            cluster_name, start = k.split(' ', 1)
-            start = int(start, 0)
-            name = v
-            cluster = clusters[cluster_name]
-            location = Location(start, start+cluster.size)
-            instance = Instance(name, cluster_name, location)
-            instances[name] = instance
+            try:
+                cluster_name, start = k.split(' ', 1)
+                start = int(start, 0)
+                name = v
+                cluster = clusters[cluster_name]
+                location = Location(start, start+cluster.size)
+                instance = Instance(name, cluster_name, location)
+                instances[name] = instance
+            except:
+                sys.stderr.write("Note: in instance '{}':\n".format(k))
+                raise
 
         self.layout = layout
         self.clusters = clusters
