@@ -22,7 +22,7 @@ class Kind:
 
     def __attrs_post_init__(self):
         if not self.hint in ['r', 'u']:
-            raise ValueError("unknown kind {}".format(self.kind))
+            raise ValueError("unknown kind {}".format(self))
 
     def __len__(self):
         assert not self.bits % 8
