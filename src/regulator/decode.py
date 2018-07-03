@@ -128,6 +128,7 @@ class Cluster:
                 else:
                     name = v.pop('name')
                     config = v
+                assert name in self.types.keys()
                 register = Register(name, kind, location, config.get('type'))
                 registers.add(register)
             except:

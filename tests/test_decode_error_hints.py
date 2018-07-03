@@ -116,3 +116,22 @@ def test_unknown_register_type(capsys):
     out, err = capsys.readouterr()
     assert "in register 'r23 0x00'" in err
     assert "in cluster 'IPU_Base'" in err
+
+    with raises(AssertionError):
+        decoder_from_string("""
+            clusters:
+              IPU_Base:
+                size: 0xe8
+                word_size: 4
+                types:
+                  r32 IPUx_CONF:
+                    fields:
+                      u2 1..2: CSI0_EN
+                registers:
+                  r32 0x00: IPU_CON
+            instances:
+              IPU_Base 0x2600000: IPU1_Base
+        """)
+    out, err = capsys.readouterr()
+    assert "in register 'r32 0x00'" in err
+    assert "in cluster 'IPU_Base'" in err
