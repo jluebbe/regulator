@@ -53,26 +53,22 @@ class Type:
     enums = attr.ib(default=None)
 
     def __attrs_post_init__(self):
-        try:
-            self.kind = Kind.from_str(self.kind)
-            fields = SortedListWithKey(key=lambda x: x.location)
-            for k, v in self.fields.items():
-                kind, location = k.split()
-                if isinstance(v, str):
-                    name = v
-                    config = {}
-                else:
-                    name = v.pop('name')
-                    config = v
-                if "enum" in config.keys() and isinstance(config["enum"], str):
-                    assert config["enum"] in self.enums.keys()
-                    config["enum"] = self.enums[config["enum"]]
-                field = Field(name, kind, location, **config)
-                fields.add(field)
-            self.fields = fields
-        except:
-            print("In type {}:".format(self.name))
-            raise
+        self.kind = Kind.from_str(self.kind)
+        fields = SortedListWithKey(key=lambda x: x.location)
+        for k, v in self.fields.items():
+            kind, location = k.split()
+            if isinstance(v, str):
+                name = v
+                config = {}
+            else:
+                name = v.pop('name')
+                config = v
+            if "enum" in config.keys() and isinstance(config["enum"], str):
+                assert config["enum"] in self.enums.keys()
+                config["enum"] = self.enums[config["enum"]]
+            field = Field(name, kind, location, **config)
+            fields.add(field)
+        self.fields = fields
 
     def __len__(self):
         return len(self.kind)
