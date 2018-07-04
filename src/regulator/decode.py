@@ -169,10 +169,18 @@ class Decoder:
             self.filename = f
             self.reload()
         else:
-            self.load(f)
+            try:
+                self.load(f)
+            except:
+                sys.stderr.write("Note: in layout file '{}':\n".format(f))
+                raise
 
     def reload(self):
-        self.load(open(self.filename, 'r'))
+        try:
+            self.load(open(self.filename, 'r'))
+        except:
+            sys.stderr.write("Note: in layout file '{}':\n".format(self.filename))
+            raise
 
     def load(self, stream):
         layout = yaml.load(stream)
