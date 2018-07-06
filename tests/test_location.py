@@ -2,6 +2,8 @@ from hypothesis import assume
 from hypothesis import given
 from hypothesis.strategies import integers
 
+from pytest import raises
+
 from regulator.location import Location
 
 
@@ -31,6 +33,19 @@ def test_location():
 
     assert Location(8, 16).reverse(32) == Location(16, 24)
 
+    with raises(ValueError, match="start must be less than stop"):
+        Location(2, 1)
+
+    with raises(TypeError, match="other must by of type Location"):
+        Location(1, 2) & True
+
+def test_number_format():
+    assert Location.from_str('0x4..0xa') == Location(4, 11)
+    assert Location.from_str('0x0', size='0x10') == Location(0, 16)
+
+    assert Location.from_str('0b010..0b111') == Location(2, 8)
+    assert Location.from_str('0b0', size='0b10') == Location(0, 2)
+
 def test_align():
     assert Location(0, 1).align(8) == Location(0, 8)
     assert Location(0, 1).align(16) == Location(0, 16)
@@ -59,6 +74,9 @@ def test_size(start, size):
     assert l.start == start
     assert l.stop == start+size
     assert len(l) == size
+
+    with raises(AssertionError):
+        Location.from_str("0..1", size=5)
 
 @given(start=integers(0), size=integers(1), width=integers(1))
 def test_reverse(start, size, width):
